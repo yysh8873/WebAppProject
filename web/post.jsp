@@ -116,10 +116,11 @@
                             <br>
                             <p><strong>등록된 해시태그 :</strong> </p>
                             <br>
+                            <div class="input-field col s12 right-align bottom-right">
+                                <a class="waves-effect waves-light btn light-blue" href="write.jsp"><i class="material-icons left">repeat</i>수정</a>
+                                <a class="waves-effect waves-light btn"><i class="material-icons left">thumb_up</i>좋아요</a>
+                            </div>
                             <div class="clearBoth"><br/></div>
-                        </div>
-                        <div class="input-field col s12 right-align bottom-right">
-                            <a class="waves-effect waves-light btn light-pink"><i class="material-icons left">thumb_up</i>좋아요</a>
                         </div>
                     </div>
                 </div>
