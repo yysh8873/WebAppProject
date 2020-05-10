@@ -16,19 +16,14 @@
 <body>
 <div class="login-page">
     <div class="form">
-        <form class="login-form">
-            <input type="text" placeholder="ID" />
-            <input type="password" placeholder="password" />
-            <button type="button" onClick="return btn_login();"> 로그인 </button>
+        <form class="login-form" method="post" action="loginAction.jsp">
+            <input type="text" placeholder="ID" name="uid" />
+            <input type="password" placeholder="password" name="pw"/>
+            <button type="submit"> 로그인 </button>
             <p class="message">계정이 없으신가요? <a href="register.jsp">회원가입</a></p>
         </form>
     </div>
 </div>
 <script src="resources/assets/js/login.js"></script>
-<script type="text/javascript">
-    function btn_login(){
-        document.location.href="index.jsp";
-    }
-</script>
 </body>
 </html>
