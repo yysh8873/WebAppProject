@@ -9,20 +9,21 @@ create table userinfo
  email varchar(30) not null,
  pw varchar(100) not null)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
 create table post
 (cid int not null primary key,
  uid varchar(20) not null,
- gid int null,
- title varchar(30) not null,
- contents varchar(10000) not null,
- tag varchar(30) null,
- tdate date not null,
+ gid int,
+ title varchar(30),
+ contents varchar(10000),
+ tag varchar(30),
+ tdate date,
  likes int null default 0)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 create table groupinfo
 (gid int not null primary key,
  gname varchar(16) not null,
- tag varchar(30) null)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ tag varchar(30))ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 create table guserinfo
 (gid int not null,
@@ -38,6 +39,8 @@ insert into userinfo(uid, name, email, pw) values('test', '테스트', 'test@hs.
 insert into userinfo(uid, name, email, pw) values('so', '이소현', 'so@hs.ac.kr', 'so11');
 insert into userinfo(uid, name, email, pw) values('si', '권시연', 'si@hs.ac.kr', 'si22');
 insert into userinfo(uid, name, email, pw) values('joo', '우주영', 'joo@hs.ac.kr', 'joo33');
+
+insert into post(cid, uid, gid, title, contents, tag, tdate, likes) values(0, 'so', 0, '테스트게시물0', '테스트 게시물0을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트0', '2020-01-06', 1);
 
 insert into post(cid, uid, gid, title, contents, tag, tdate, likes) values(1, 'so', 0, '테스트게시물1', '테스트 게시물1을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트1 #테스트2', '2020-01-06', 1);
 insert into post(cid, uid, gid, title, contents, tag, tdate, likes) values(2, 'so', 1, '테스트게시물2', '테스트 게시물2을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트2 #테스트3', '2020-05-06', 1);
