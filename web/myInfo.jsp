@@ -113,23 +113,25 @@
         <div class="col-md-12">
           <div class="card">
             <%
-              String userID=null;;
+              String userID=null;
               if(session.getAttribute("userID")!=null) {
                 userID = (String) session.getAttribute("userID");
               }
+
+              UserDAO user = new UserDAO();
             %>
             <div class="card-action">
               내 정보
             </div>
             <div class="card-content">
 
-              <p><strong>이름 :</strong> 닉네임 </p>
+              <p><strong>이름 :</strong> <%=user.myName(userID)%> </p>
               <br>
-              <p><strong>ID :</strong> </p>
+              <p><strong>ID :</strong><%=userID%> </p>
               <br>
-              <p><strong>게시글 수 :</strong> 포스트 등록 수 </p>
+              <p><strong>게시글 수 :</strong> <%=user.myPostCnt(userID)%> </p>
               <br>
-              <p><strong>그룹 수 :</strong> 가입된 그룹 수 </p>
+              <p><strong>그룹 수 :</strong><%=user.myGroupCnt(userID)%></p>
               <div class="input-field col s12 right-align bottom-right">
                 <a class="waves-effect waves-light btn pink" href="changeUserInfo.jsp"><i class="material-icons left">repeat</i>change</a>
               </div>
