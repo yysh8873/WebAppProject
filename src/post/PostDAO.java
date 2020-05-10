@@ -59,17 +59,7 @@ public class PostDAO {
 
     // 게시글 쓰기
     public int write(String title, String uid, String contents, int gid,String tag) {
-        //create table post
-        //(cid int not null primary key,
-        // uid varchar(20) not null,
-        // gid int null,
-        // title varchar(30) not null,
-        // contents varchar(10000) not null,
-        // tag varchar(30) null,
-        // tdate date not null,
-        // likes int null default 0)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-        System.out.println("cid : "+getNext());
         String SQL = "insert into post(cid, uid, gid, title, contents, tag, tdate, likes) values(?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement pstmt=conn.prepareStatement(SQL);
