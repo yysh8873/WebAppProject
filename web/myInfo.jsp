@@ -6,6 +6,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="user.UserDAO"%>
+<%@ page import="java.io.PrintWriter"%>
+<% request.setCharacterEncoding("UTF-8"); %>
+<jsp:useBean id="me" class="user.User" scope="page"/>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="utf-8" />
@@ -107,13 +112,20 @@
       <div class="row">
         <div class="col-md-12">
           <div class="card">
+            <%
+              String userID=null;;
+              if(session.getAttribute("userID")!=null) {
+                userID = (String) session.getAttribute("userID");
+              }
+            %>
             <div class="card-action">
               내 정보
             </div>
             <div class="card-content">
+
               <p><strong>이름 :</strong> 닉네임 </p>
               <br>
-              <p><strong>ID :</strong> ID </p>
+              <p><strong>ID :</strong> </p>
               <br>
               <p><strong>게시글 수 :</strong> 포스트 등록 수 </p>
               <br>
