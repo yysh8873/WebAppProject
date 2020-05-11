@@ -49,4 +49,52 @@ public class UserDAO {
         }
         return -1; // 데이터베이스 오류
     }
+
+    // myInfo.jsp에서 사용
+    // 내 포스트 개수
+    public int myPostCnt(String uid){
+        String SQL = "SELECT cid FROM post WHERE uid = ?";
+        try {
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, uid); // 물음표에 해당하는 부분에 uid 넣기
+            rs = pstmt.executeQuery();
+
+            rs.last();
+            return rs.getRow();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return -1; // 데이터베이스 오류
+    }
+
+    // myInfo.jsp에서 사용
+    // 가입한 그룹 개수
+    public int myGroupCnt(String uid) {
+        String SQL = "SELECT gid FROM guserinfo WHERE uid = ?";
+        try {
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, uid); // 물음표에 해당하는 부분에 uid 넣기
+            rs = pstmt.executeQuery();
+
+            rs.last();
+            return rs.getRow();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return -1; // 데이터베이스 오류
+    }
+
+    public String myName(String uid) {
+        String SQL = "SELECT name FROM userinfo WHERE uid = ?";
+        try {
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, uid); // 물음표에 해당하는 부분에 uid 넣기
+            rs = pstmt.executeQuery();
+            rs.next();
+            return rs.getString(1);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "-1"; // 데이터베이스 오류
+    }
 }
