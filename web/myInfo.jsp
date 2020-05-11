@@ -133,7 +133,7 @@
               <br>
               <p><strong>그룹 수 :</strong><%=user.myGroupCnt(userID)%></p>
               <div class="input-field col s12 right-align bottom-right">
-                <a class="waves-effect waves-light btn pink" href="changeUserInfo.jsp"><i class="material-icons left">repeat</i>change</a>
+                <a class="waves-effect waves-light btn yellow" href="changeUserInfo.jsp"><i class="material-icons left">repeat</i>수정</a>
               </div>
               <div class="clearBoth"><br/></div>
 

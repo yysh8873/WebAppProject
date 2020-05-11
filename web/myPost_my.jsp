@@ -174,16 +174,15 @@
                             <%
                                 } if (postsDAO.nextPage(pageNumber + 1)) {
                             %>
-                            <a href="myPost_my.jsp?pageNumber=<%=pageNumber + 1%>" class="btn btn btn-light btn pull-right">다음으로</a>
+                            <a href="myPost_my.jsp.jsp?pageNumber=<%=pageNumber + 1%>" class="btn btn btn-light btn pull-right">다음으로</a>
                             <%
                                 }
 
                             %>
                         </div>
                     </div>
-
-
                 </div>
+
             </div>
         </div>
     </div>
