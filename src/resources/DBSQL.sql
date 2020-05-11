@@ -9,7 +9,7 @@ create table userinfo
  email varchar(30) not null,
  pw varchar(100) not null)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-create table post
+create table posts
 (cid int not null primary key,
  uid varchar(20) not null,
  gid int null,
@@ -29,6 +29,11 @@ create table guserinfo
  uid varchar(20) not null,
  primary key(gid, uid))ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+create table likes
+(cid int not null,
+ uid varchar(20) not null,
+ primary key(cid, uid))ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 show databases;
 show tables;
@@ -39,21 +44,21 @@ insert into userinfo(uid, name, email, pw) values('so', '이소현', 'so@hs.ac.k
 insert into userinfo(uid, name, email, pw) values('si', '권시연', 'si@hs.ac.kr', 'si22');
 insert into userinfo(uid, name, email, pw) values('joo', '우주영', 'joo@hs.ac.kr', 'joo33');
 
-insert into post(cid, uid, gid, title, contents, tag, tdate, likes) values(1, 'so', 0, '테스트게시물1', '테스트 게시물1을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트1 #테스트2', '2020-01-06', 1);
-insert into post(cid, uid, gid, title, contents, tag, tdate, likes) values(2, 'so', 1, '테스트게시물2', '테스트 게시물2을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트2 #테스트3', '2020-05-06', 1);
-insert into post(cid, uid, gid, title, contents, tag, tdate, likes) values(3, 'so', 1, '테스트게시물3', '테스트 게시물3을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트3', '2020-05-06', 0);
-insert into post(cid, uid, gid, title, contents, tag, tdate, likes) values(4, 'so', 1, '테스트게시물4', '테스트 게시물4을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트4', '2020-05-07', 0);
-insert into post(cid, uid, gid, title, contents, tag, tdate, likes) values(5, 'so', 1, '테스트게시물5', '테스트 게시물5을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트5', '2020-05-07', 1);
+insert into posts(cid, uid, gid, title, contents, tag, tdate, likes) values(1, 'so', 0, '테스트게시물1', '테스트 게시물1을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트1 #테스트2', '2020-01-06', 0);
+insert into posts(cid, uid, gid, title, contents, tag, tdate, likes) values(2, 'so', 1, '테스트게시물2', '테스트 게시물2을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트2 #테스트3', '2020-05-06', 0);
+insert into posts(cid, uid, gid, title, contents, tag, tdate, likes) values(3, 'so', 1, '테스트게시물3', '테스트 게시물3을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트3', '2020-05-06', 0);
+insert into posts(cid, uid, gid, title, contents, tag, tdate, likes) values(4, 'so', 1, '테스트게시물4', '테스트 게시물4을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트4', '2020-05-07', 0);
+insert into posts(cid, uid, gid, title, contents, tag, tdate, likes) values(5, 'so', 1, '테스트게시물5', '테스트 게시물5을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트5', '2020-05-07', 0);
 
-insert into post(cid, uid, gid, title, contents, tag, tdate, likes) values(6, 'si', 0, '테스트게시물6', '테스트 게시물6을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트6 #테스트3', '2020-05-08', 1);
-insert into post(cid, uid, gid, title, contents, tag, tdate, likes) values(7, 'si', 0, '테스트게시물7', '테스트 게시물7을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트7 #테스트3', '2020-05-08', 0);
-insert into post(cid, uid, gid, title, contents, tag, tdate, likes) values(8, 'si', 0, '테스트게시물8', '테스트 게시물8을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트8', '2020-05-10', 1);
-insert into post(cid, uid, gid, title, contents, tag, tdate, likes) values(9, 'si', 2, '테스트게시물9', '테스트 게시물9을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트9', '2020-05-10', 1);
-insert into post(cid, uid, gid, title, contents, tag, tdate, likes) values(10, 'si', 2, '테스트게시물10', '테스트 게시물10을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트10', '2020-05-11', 0);
+insert into posts(cid, uid, gid, title, contents, tag, tdate, likes) values(6, 'si', 0, '테스트게시물6', '테스트 게시물6을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트6 #테스트3', '2020-05-08', 0);
+insert into posts(cid, uid, gid, title, contents, tag, tdate, likes) values(7, 'si', 0, '테스트게시물7', '테스트 게시물7을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트7 #테스트3', '2020-05-08', 0);
+insert into posts(cid, uid, gid, title, contents, tag, tdate, likes) values(8, 'si', 0, '테스트게시물8', '테스트 게시물8을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트8', '2020-05-10', 0);
+insert into posts(cid, uid, gid, title, contents, tag, tdate, likes) values(9, 'si', 2, '테스트게시물9', '테스트 게시물9을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트9', '2020-05-10', 0);
+insert into posts(cid, uid, gid, title, contents, tag, tdate, likes) values(10, 'si', 2, '테스트게시물10', '테스트 게시물10을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트10', '2020-05-11', 0);
 
-insert into post(cid, uid, gid, title, contents, tag, tdate, likes) values(11, 'joo', 3, '테스트게시물11', '테스트 게시물11을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트11 #테스트3', '2020-05-07', 1);
-insert into post(cid, uid, gid, title, contents, tag, tdate, likes) values(12, 'joo', 3, '테스트게시물12', '테스트 게시물12을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트12', '2020-05-08', 1);
-insert into post(cid, uid, gid, title, contents, tag, tdate, likes) values(13, 'joo', 3, '테스트게시물13', '테스트 게시물13을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트13', '2020-05-09', 1);
+insert into posts(cid, uid, gid, title, contents, tag, tdate, likes) values(11, 'joo', 0, '테스트게시물11', '테스트 게시물11을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트11 #테스트3', '2020-05-07', 1);
+insert into posts(cid, uid, gid, title, contents, tag, tdate, likes) values(12, 'joo', 0, '테스트게시물12', '테스트 게시물12을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트12', '2020-05-08', 1);
+insert into posts(cid, uid, gid, title, contents, tag, tdate, likes) values(13, 'joo', 0, '테스트게시물13', '테스트 게시물13을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트13', '2020-05-09', 3);
 
 insert into groupinfo(gid, gname, tag) values(1, '소현이네', '#테스트1');
 insert into groupinfo(gid, gname, tag) values(2, '시연이네', '#테스트2');
@@ -68,7 +73,14 @@ insert into guserinfo(gid, uid) values(2, 'joo');
 
 insert into guserinfo(gid, uid) values(3, 'so');
 
+insert into likes(cid, uid) values (11, 'so');
+insert into likes(cid, uid) values (12, 'so');
+insert into likes(cid, uid) values (13, 'so');
+insert into likes(cid, uid) values (13, 'si');
+insert into likes(cid, uid) values (13, 'joo');
+
 select * from userinfo;
-select * from post;
+select * from posts;
 select * from groupinfo;
 select * from guserinfo;
+select * from likes;

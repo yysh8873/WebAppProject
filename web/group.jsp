@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="posts.Posts" %>
+<%@ page import="posts.PostsDAO" %>
+<%@ page import="java.util.ArrayList" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="utf-8" />
@@ -26,6 +29,12 @@
   <!-- Google Fonts-->
   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
   <link rel="stylesheet" href="resources/assets/js/Lightweight-Chart/cssCharts.css">
+  <style type="text/css">
+    a, a:hover{
+      color: #000000;
+      text-decoration: none;
+    }
+  </style>
 </head>
 
 <body>
@@ -104,6 +113,17 @@
       </ol>
     </div>
     <div id="page-inner">
+      <%
+        String uid = null;
+        if(session.getAttribute("uid") != null){
+          uid = (String) session.getAttribute("uid");
+        }
+
+        int pageNumber = 1;
+        if(request.getParameter("pageNumber") != null){
+          pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
+        }
+      %>
       <div class="row">
         <div class="col-md-12">
           <div class="card">
@@ -112,43 +132,35 @@
             </div>
             <div class="card-image">
               <ul class="collection">
-                <a href="post.jsp" type="inline" style="text-decoration:none">
+                <%
+                  PostsDAO postsDAO = new PostsDAO();
+                  ArrayList<Posts> list = postsDAO.getList(pageNumber);
+                  for(int i = 0; i < list.size(); i++){
+                %>
+                <a href="post.jsp?cid=<%= list.get(i).getCid() %>" type="inline" style="text-decoration:none">
                   <li class="collection-item avatar">
-                    <i class="material-icons circle yellow">track_changes</i>
-                    <span class="title">글 제목</span>
-                    <p>글쓴이<br>
-                      게시글 미리보기
+                    <i class="circle yellow white-text"><%= list.get(i).getCid() %></i>
+                    <span class="title"><%= list.get(i).getTitle() %></span>
+                    <p><%= list.get(i).getUid() %><br>
+                      <%= list.get(i).getContents() %>
                     </p>
                     <a href="#!" class="secondary-content"><i class="material-icons">thumb_up</i></a>
                   </li></a>
-                <a href="post.jsp" type="inline" style="text-decoration:none">
-                  <li class="collection-item avatar">
-                    <i class="material-icons circle">folder</i>
-                    <span class="title">글 제목</span>
-                    <p>글쓴이<br>
-                      게시글 미리보기
-                    </p>
-                    <a href="#!" class="secondary-content"><i class="material-icons">thumb_up</i></a>
-                  </li></a>
-                <a href="post.jsp" type="inline" style="text-decoration:none">
-                  <li class="collection-item avatar">
-                    <i class="material-icons circle yellow">track_changes</i>
-                    <span class="title">글제목</span>
-                    <p>글쓴이<br>
-                      게시글 미리보기
-                    </p>
-                    <a href="#!" class="secondary-content"><i class="material-icons">thumb_up</i></a>
-                  </li></a>
-                <a href="post.jsp" type="inline" style="text-decoration:none">
-                  <li class="collection-item avatar">
-                    <i class="material-icons circle">folder</i>
-                    <span class="title">글 제목</span>
-                    <p>글쓴이<br>
-                      게시글 미리보기
-                    </p>
-                    <a href="#!" class="secondary-content"><i class="material-icons">thumb_up</i></a>
-                  </li></a>
+                <%
+                  }
+                %>
               </ul>
+              <%
+                if(pageNumber != 1) {
+              %>
+              <a href="group.jsp?pageNumber=<%=pageNumber - 1%>" class="btn btn btn-light btn pull-right">이전으로</a>
+              <%
+                } if (postsDAO.nextPage(pageNumber + 1)) {
+              %>
+              <a href="group.jsp?pageNumber=<%=pageNumber + 1%>" class="btn btn btn-light btn pull-right">다음으로</a>
+              <%
+                }
+              %>
             </div>
           </div>
 

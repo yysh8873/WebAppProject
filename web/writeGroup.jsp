@@ -108,24 +108,29 @@
         <div class="col-md-12">
           <div class="card">
             <div class="card-content">
-              <form class="col s12">
+              <form class="col s12" method="posts" action="writeGroupAction.jsp">
                 <div class="row">
                   <div class="input-field col s12">
-                    <textarea id="textarea1" class="materialize-textarea"></textarea>
+                    <textarea id="textarea1" class="materialize-textarea" name="title"></textarea>
                     <label for="textarea1">글 제목</label>
                   </div>
 
                   <div class="input-field col s12">
+                    <textarea id="textarea4" class="materialize-textarea" name="gid"></textarea>
+                    <label for="textarea4">소속 그룹</label>
+                  </div>
+
+                  <div class="input-field col s12">
                     <label for="textarea2">내용</label>
-                    <textarea class="form-control materialize-textarea" id="textarea2" rows="10"></textarea>
+                    <textarea class="form-control materialize-textarea" id="textarea2" rows="10" name="contents"></textarea>
                   </div>
 
                   <div class="input-field col s6">
-                    <label for="textarea2">해시태그 등록</label>
-                    <textarea class="form-control materialize-textarea" id="textarea3"></textarea>
+                    <label for="textarea3">해시태그 등록</label>
+                    <textarea class="form-control materialize-textarea" id="textarea3" name="tag"></textarea>
                   </div>
                   <div class="input-field col s12 right-align bottom-right">
-                    <a class="waves-effect waves-light btn yellow black-text"><i class="material-icons left">done</i>Upload</a>
+                    <button type="submit"> upload </button>
                   </div>
                 </div>
               </form>

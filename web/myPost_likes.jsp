@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: 이소현
   Date: 2020-04-23
-  Time: 오전 10:38
+  Time: 오전 10:31
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -15,7 +15,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Deeper - 포스트</title>
+    <title>Deeper - 내포스트</title>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="resources/assets/materialize/css/materialize.min.css" media="screen,projection" />
@@ -31,30 +31,30 @@
     <!-- Google Fonts-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <link rel="stylesheet" href="resources/assets/js/Lightweight-Chart/cssCharts.css">
+    <style type="text/css">
+        a, a:hover{
+            color: #000000;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
 <%
     String userID = null;
     if(session.getAttribute("userID") != null) {
-        System.out.println("userID error");
         userID = (String) session.getAttribute("userID");
     }
 
-    int cid = 0;
-    if(request.getParameter("cid") != null){
-        System.out.println("cid != null ");
-        cid = Integer.parseInt(request.getParameter("cid"));
-    }
-    if(cid == 0){
-        System.out.println("No post error");
+    if (userID == null) {
+        System.out.println("No login error");
         PrintWriter script = response.getWriter();
         script.println("<script>");
-        script.println("alert('유효하지 않은 글입니다.')");
-        script.println("location.href='index.jsp'");
+        script.println("alert('로그인을 하세요')");
+        script.println("location.href='login.jsp'");
         script.println("</script>");
     }
-
-    Posts posts = new PostsDAO().getPost(cid);
+    else {
+    }
 %>
 <div id="wrapper">
     <nav class="navbar navbar-default top-navbar" role="navigation">
@@ -94,15 +94,16 @@
     </ul>
 
     <!--/. NAV TOP  -->
+    <!--/. NAV TOP  -->
     <nav class="navbar-default navbar-side" role="navigation">
         <div class="sidebar-collapse">
             <ul class="nav" id="main-menu">
 
                 <li>
-                    <a class="active-menu waves-effect waves-dark" href="index.jsp"><i class="fa fa-dashboard"></i> Home</a>
+                    <a class="waves-effect waves-dark" href="index.jsp"><i class="fa fa-dashboard"></i> Home</a>
                 </li>
                 <li>
-                    <a href="myPost.jsp" class="waves-effect waves-dark"><i class="fa fa-desktop"></i> 내 포스트</a>
+                    <a href="myPost.jsp" class="active-menu waves-effect waves-dark"><i class="fa fa-desktop"></i> 내 포스트</a>
                 </li>
                 <li>
                     <a href="myGroup.jsp" class="waves-effect waves-dark"><i class="fa fa-qrcode"></i> 그룹 </a>
@@ -122,69 +123,90 @@
     <div id="page-wrapper">
         <div class="header">
             <h1 class="page-header">
-                <%= posts.getTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %> <small><%= posts.getUid() %></small>
+                내 포스트
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#">Home</a></li>
-                <li><a href="#"><%= posts.getUid() %></a></li>
-                <li class="active"><%= posts.getTdate() %></li>
+                <li><a href="#">내 포스트</a></li>
+                <li class="active">내가 작성한 포스트 및 좋아요 포스트</li>
             </ol>
-
         </div>
         <div id="page-inner">
+            <%
+                    System.out.println("pageNumber ok");
+                int pageNumber = 1;
+                if(request.getParameter("pageNumber") != null){
+                    pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
+                }
+            %>
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-action">
-                            <%= posts.getTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %>
+                            <b>북마크 포스트</b>
                         </div>
-                        <div class="card-content" >
-                            <p>작성자: <%= posts.getUid() %></p>
-                            <p>작성일: <%= posts.getTdate() %></p>
-                            <hr>
-                            <p aria-colspan="2", style="min-height: 200px; text-align: left">
-                                <%= posts.getContents().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></p>
-                            <br>
-                            <hr>
-                            <p><strong>등록된 해시태그 [ <%= posts.getTag() %> ] </strong> </p>
-                            <br>
-                            <div class="input-field col s12 right-align bottom-right">
+                        <div class="card-image">
+                            <ul class="collection">
                                 <%
-                                    if(userID != null && userID.equals(posts.getUid())){
-
+                                    PostsDAO postsDAO2 = new PostsDAO();
+                                    ArrayList<Posts> list2 = postsDAO2.getMyLikeList(pageNumber, userID);
+                                    System.out.println("list2.size() = "+ list2.size());
+                                    for(int i = 0; i < list2.size(); i++){
                                 %>
-                                    <a href="update.jsp?cid=<%= cid %>" class="waves-effect waves-light btn blue white-text" href="index.jsp"><i class="material-icons left">visibility_off</i>삭제</a>
-                                    <a href="deleteAction.jsp?cid=<%= cid %>" class="waves-effect waves-light btn yellow text-darken-1" href="write.jsp"><i class="material-icons left">repeat</i>수정</a>
+                                <a href="post.jsp?cid=<%= list2.get(i).getCid() %>" type="inline" style="text-decoration:none">
+                                    <li class="collection-item avatar">
+                                        <i class="circle light-blue white-text"><%= list2.get(i).getCid() %></i>
+                                        <span class="title"><%= list2.get(i).getTitle() %></span>
+                                        <p><%= list2.get(i).getUid() %></p>
+                                        <br>
+                                        <p aria-colspan="2", style="max-height: 11px; text-align: left"> <%= list2.get(i).getContents() %> </p>
+                                        <a href="#!" class="secondary-content"><i class="material-icons">thumb_up</i></a>
+                                    </li></a>
                                 <%
                                     }
                                 %>
-                                <a class="waves-effect waves-light btn"><i class="material-icons left">thumb_up</i>좋아요</a>
-                                <a href="index.jsp" class="waves-effect waves-light btn pink" href="write.jsp"><i class="material-icons left">done</i>확인</a>
-                            </div>
-                            <div class="clearBoth"><br/></div>
+                            </ul>
+                            <%
+                                if(pageNumber != 1) {
+                            %>
+                            <a href="myPost.jsp?pageNumber=<%=pageNumber - 1%>" class="btn btn btn-light btn pull-right">이전으로</a>
+                            <%
+                                } if (postsDAO2.nextPage(pageNumber + 1)) {
+                            %>
+                            <a href="myPost_likes.jsp?pageNumber=<%=pageNumber + 1%>" class="btn btn btn-light btn pull-right">다음으로</a>
+                            <%
+                                }
+                            %>
                         </div>
                     </div>
                 </div>
-                <!-- /. PAGE INNER  -->
             </div>
-            <!-- /. PAGE WRAPPER  -->
         </div>
     </div>
-        <!-- /. WRAPPER  -->
-        <!-- JS Scripts-->
-        <!-- jQuery Js -->
-        <script src="resources/assets/js/jquery-1.10.2.js"></script>
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="resources/assets/js/jquery-1.10.2.js"></script>
 
-        <!-- Bootstrap Js -->
-        <script src="resources/assets/js/bootstrap.min.js"></script>
+    <!-- Bootstrap Js -->
+    <script src="resources/assets/js/bootstrap.min.js"></script>
 
-        <script src="resources/assets/materialize/js/materialize.min.js"></script>
+    <script src="resources/assets/materialize/js/materialize.min.js"></script>
 
-        <!-- Metis Menu Js -->
-        <script src="resources/assets/js/jquery.metisMenu.js"></script>
-        <!-- Custom Js -->
-        <script src="resources/assets/js/custom-scripts.js"></script>
+    <!-- Metis Menu Js -->
+    <script src="resources/assets/js/jquery.metisMenu.js"></script>
+    <!-- Morris Chart Js -->
+    <script src="resources/assets/js/morris/raphael-2.1.0.min.js"></script>
+    <script src="resources/assets/js/morris/morris.js"></script>
 
+
+    <script src="resources/assets/js/easypiechart.js"></script>
+    <script src="resources/assets/js/easypiechart-data.js"></script>
+
+    <script src="resources/assets/js/Lightweight-Chart/jquery.chart.js"></script>
+
+    <!-- Custom Js -->
+    <script src="resources/assets/js/custom-scripts.js"></script>
 
 
 </body>

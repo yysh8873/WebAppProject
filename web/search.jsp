@@ -112,7 +112,7 @@
             </div>
             <div class="card-image">
               <ul class="collection">
-                <a href="post.jsp" type="inline" style="text-decoration:none">
+                <a href="posts.jsp" type="inline" style="text-decoration:none">
                   <li class="collection-item avatar">
                     <i class="material-icons circle yellow">track_changes</i>
                     <span class="title">글 제목</span>
@@ -121,7 +121,7 @@
                     </p>
                     <a href="#!" class="secondary-content"><i class="material-icons">thumb_up</i></a>
                   </li></a>
-                <a href="post.jsp" type="inline" style="text-decoration:none">
+                <a href="posts.jsp" type="inline" style="text-decoration:none">
                   <li class="collection-item avatar">
                     <i class="material-icons circle">folder</i>
                     <span class="title">글 제목</span>
@@ -130,7 +130,7 @@
                     </p>
                     <a href="#!" class="secondary-content"><i class="material-icons">thumb_up</i></a>
                   </li></a>
-                <a href="post.jsp" type="inline" style="text-decoration:none">
+                <a href="posts.jsp" type="inline" style="text-decoration:none">
                   <li class="collection-item avatar">
                     <i class="material-icons circle yellow">track_changes</i>
                     <span class="title">글제목</span>
@@ -139,7 +139,7 @@
                     </p>
                     <a href="#!" class="secondary-content"><i class="material-icons">thumb_up</i></a>
                   </li></a>
-                <a href="post.jsp" type="inline" style="text-decoration:none">
+                <a href="posts.jsp" type="inline" style="text-decoration:none">
                   <li class="collection-item avatar">
                     <i class="material-icons circle">folder</i>
                     <span class="title">글 제목</span>

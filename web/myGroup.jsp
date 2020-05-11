@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
     <meta charset="utf-8" />
@@ -26,6 +27,7 @@
     <!-- Google Fonts-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <link rel="stylesheet" href="resources/assets/js/Lightweight-Chart/cssCharts.css">
+
 </head>
 <body>
 <div id="wrapper">
@@ -187,7 +189,7 @@
                             <p>나만의 그룹을 만들어보세요</p>
                         </div>
                         <div class="card-action">
-                            <a href="makrGroup.jsp">그룹 만들기</a>
+                            <a href="makeGroup.jsp">그룹 만들기</a>
                         </div>
                     </div>
                 </div>

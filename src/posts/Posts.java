@@ -1,15 +1,26 @@
-package deeper;
+/*
+    create table post
+    	(cid int not null primary key,
+    	uid varchar(20) not null,
+	    gid varchar(20) null,
+    	title varchar(30) not null,
+    	contents varchar(10000) not null,
+	    tag varchar(30) null,
+	    tdate date not null,
+	    likes int null default 0)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ */
 
-// 자바 빈즈 클래스
-public class Deeper {
+package posts;
+
+public class Posts {
     private int cid;
     private String uid;
-    private String gid;
+    private int gid;
     private String title;
     private String contents;
     private String tag;
     private String tdate;
-    private int like;
+    private int likes;
 
     public int getCid() {
         return cid;
@@ -27,11 +38,11 @@ public class Deeper {
         this.uid = uid;
     }
 
-    public String getGid() {
+    public int getGid() {
         return gid;
     }
 
-    public void setGid(String gid) {
+    public void setGid(int gid) {
         this.gid = gid;
     }
 
@@ -67,11 +78,11 @@ public class Deeper {
         this.tdate = tdate;
     }
 
-    public int getLike() {
-        return like;
+    public int getLikes() {
+        return likes;
     }
 
-    public void setLike(int like) {
-        this.like = like;
+    public void setLikes(int likes) {
+        this.likes = likes;
     }
 }

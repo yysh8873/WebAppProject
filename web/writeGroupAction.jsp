@@ -13,7 +13,7 @@
 </head>
 <body>
 <%
-  String userID = null;
+  String userID=null;;
   if(session.getAttribute("userID")!=null) {
     userID = (String) session.getAttribute("userID");
   }
@@ -21,7 +21,7 @@
     System.out.println("writeAction error 1");
     PrintWriter script = response.getWriter();
     script.println("<script>");
-    script.println("alert('로그인을 하세요')");
+    script.println("alert('로그인을 하세요')>");
     script.println("location.href='login.jsp'");
     script.println("</script>");
   }
@@ -30,14 +30,14 @@
       System.out.println("writeAction error 2");
       PrintWriter script = response.getWriter();
       script.println("<script>");
-      script.println("alert('입력되지 않은 사항이 있습니다')");
+      script.println("alert('입력되지 않은 사항이 있습니다')>");
       script.println("history.back()");
       script.println("</script>");
 
     } else {
       PostsDAO postsDAO = new PostsDAO();
       //write(String title, String uid, String contents, int gid,String tag)
-      int result = postsDAO.write(write.getTitle(), userID, write.getContents(),0,write.getTag());
+      int result = postsDAO.write(write.getTitle(), userID, write.getContents(),write.getGid(),write.getTag());
 
       if (result == -1) {
         System.out.println("writeAction error 3");
@@ -50,7 +50,7 @@
         System.out.println("writeAction error 4");
         PrintWriter script = response.getWriter();
         script.println("<script>");
-        script.println("location.href = 'index.jsp'");
+        script.println("location.href = 'posts.jsp'");
         script.println("</script>");
       }
     }
