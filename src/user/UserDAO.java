@@ -28,6 +28,39 @@ public class UserDAO {
 
     }
 
+    //회원가입
+    public int register(String uid, String name, String email, String pw) {
+        String SQL = "INSERT INTO userinfo value (?, ?, ?, ?)";
+        try {
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, uid);
+            pstmt.setString(2, name);
+            pstmt.setString(3, email);
+            pstmt.setString(4, pw); //(name, uid, email, pw)
+            return pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("DB 오류");
+        }
+        return -1; // DB Error
+    }
+
+    //회원가입 - 아이디 중복 검사
+    public int idDuplication(String uid) {
+        String SQL = "SELECT uid FROM userinfo WHERE uid = ?";
+        try {
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, uid);
+            rs = pstmt.executeQuery();
+            if (rs.next()) return 1; //아이디 중복
+            else return 0; //중복 아님
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("DB 오류");
+        }
+        return -1; // DB Error
+    }
+
     public int login(String uid, String pw){
         String SQL = "SELECT pw FROM userinfo WHERE uid = ?";
         try {
