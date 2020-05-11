@@ -53,7 +53,7 @@ public class UserDAO {
     // myInfo.jsp에서 사용
     // 내 포스트 개수
     public int myPostCnt(String uid){
-        String SQL = "SELECT cid FROM post WHERE uid = ?";
+        String SQL = "SELECT cid FROM posts WHERE uid = ?";
         try {
             pstmt = conn.prepareStatement(SQL);
             pstmt.setString(1, uid); // 물음표에 해당하는 부분에 uid 넣기
