@@ -21,7 +21,7 @@
             <input type="text" placeholder="ID" name="uid"/>
             <input type="password" placeholder="PW" name="pw"/>
             <input type="text" placeholder="email" name="email"/>
-            <button type="button" onClick="return btn_login();"> 회원가입</button>
+            <button type="submit"> 회원가입</button>
             <p class="message">로그인하시겠습니까? <a href="login.jsp">로그인</a></p>
         </form>
     </div>
