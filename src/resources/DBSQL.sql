@@ -60,6 +60,64 @@ insert into posts(cid, uid, gid, title, contents, tag, tdate, likes) values(11, 
 insert into posts(cid, uid, gid, title, contents, tag, tdate, likes) values(12, 'joo', 0, '테스트게시물12', '테스트 게시물12을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트12', '2020-05-08', 1);
 insert into posts(cid, uid, gid, title, contents, tag, tdate, likes) values(13, 'joo', 0, '테스트게시물13', '테스트 게시물13을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트13', '2020-05-09', 3);
 
+insert into posts(cid, uid, gid, title, contents, tag, tdate, likes)
+values(14, 'so', 0, '에잇(Prod.&Feat. SUGA of BTS)',                                                                             'So are you happy now
+Finally happy now are you
+
+뭐 그대로야 난
+다 잃어버린 것 같아
+
+모든 게 맘대로 왔다가 인사도 없이 떠나
+이대로는 무엇도 사랑하고 싶지 않아
+다 해질 대로 해져버린
+기억 속을 여행해
+
+우리는 오렌지 태양 아래
+그림자 없이 함께 춤을 춰
+정해진 이별 따위는 없어
+아름다웠던 그 기억에서 만나
+Forever young
+
+우우우 우우우우 우우우 우우우우
+Forever we young
+우우우 우우우우
+이런 악몽이라면 영영 깨지 않을게
+
+섬 그래 여긴 섬 서로가 만든 작은 섬
+예 음 forever young 영원이란 말은 모래성
+
+작별은 마치 재난문자 같지
+그리움과 같이 맞이하는 아침
+서로가 이 영겁을 지나
+꼭 이 섬에서 다시 만나
+
+지나듯 날 위로하던 누구의 말대로 고작
+한 뼘짜리 추억을 잊는 게 참 쉽지 않아
+시간이 지나도 여전히
+날 붙드는 그곳에
+
+우리는 오렌지 태양 아래
+그림자 없이 함께 춤을 춰
+정해진 안녕 따위는 없어
+아름다웠던 그 기억에서 만나
+
+우리는 서로를 베고 누워
+슬프지 않은 이야기를 나눠
+우울한 결말 따위는 없어
+난 영원히 널 이 기억에서 만나
+Forever young
+
+우우우 우우우우 우우우 우우우우
+Forever we young
+우우우 우우우우
+이런 악몽이라면 영영 깨지 않을게', '#테스트13', '2020-05-09', 3);
+
+insert into posts(cid, uid, gid, title, contents, tag, tdate, likes) values(15, 'so', 0, '테스트게시물15', '테스트 게시물15을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트1 #테스트2', '2020-01-06', 1);
+insert into posts(cid, uid, gid, title, contents, tag, tdate, likes) values(16, 'so', 1, '테스트게시물16', '테스트 게시물16을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트2 #테스트3', '2020-05-06', 1);
+insert into posts(cid, uid, gid, title, contents, tag, tdate, likes) values(17, 'so', 1, '테스트게시물17', '테스트 게시물17을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트3', '2020-05-06', 1);
+insert into posts(cid, uid, gid, title, contents, tag, tdate, likes) values(18, 'so', 1, '테스트게시물18', '테스트 게시물18을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트4', '2020-05-07', 1);
+insert into posts(cid, uid, gid, title, contents, tag, tdate, likes) values(19, 'so', 1, '테스트게시물19', '테스트 게시물19을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트5', '2020-05-07', 1);
+
 insert into groupinfo(gid, gname, tag) values(1, '소현이네', '#테스트1');
 insert into groupinfo(gid, gname, tag) values(2, '시연이네', '#테스트2');
 insert into groupinfo(gid, gname, tag) values(3, '주영이네', '#테스트3');
@@ -78,6 +136,11 @@ insert into likes(cid, uid) values (12, 'so');
 insert into likes(cid, uid) values (13, 'so');
 insert into likes(cid, uid) values (13, 'si');
 insert into likes(cid, uid) values (13, 'joo');
+insert into likes(cid, uid) values (15, 'so');
+insert into likes(cid, uid) values (16, 'so');
+insert into likes(cid, uid) values (17, 'so');
+insert into likes(cid, uid) values (18, 'so');
+insert into likes(cid, uid) values (19, 'so');
 
 select * from userinfo;
 select * from posts;
