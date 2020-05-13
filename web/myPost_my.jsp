@@ -157,10 +157,11 @@
                                 <a href="post.jsp?cid=<%= list.get(i).getCid() %>" type="inline" style="text-decoration:none">
                                     <li class="collection-item avatar">
                                         <i class="circle light-blue white-text"><%= list.get(i).getCid() %></i>
-                                        <span class="title"><%= list.get(i).getTitle() %></span>
+                                        <span class="title" style="text-size: 15px"><%= list.get(i).getTitle() %></span>
                                         <p><%= list.get(i).getUid() %></p>
+                                        <p style="color: gray"><%= list.get(i).getTdate() %></p>
                                         <br>
-                                        <p aria-colspan="2", style="max-height: 11px; text-align: left"> <%= list.get(i).getContents() %> </p>
+                                        <p aria-colspan="2", style="max-height: 11px; text-align: left"> <%= list.get(i).getTag() %> </p>
                                         <a href="#!" class="secondary-content"><i class="material-icons">thumb_up</i></a>
                                     </li></a>
                                 <%

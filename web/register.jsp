@@ -16,12 +16,12 @@
 <body>
 <div class="login-page">
     <div class="form">
-        <form class="login-form">
-            <input type="text" placeholder="이름" />
-            <input type="text" placeholder="ID" />
-            <input type="password" placeholder="PW" />
-            <input type="text" placeholder="email" />
-            <button type="button" onClick="return btn_login();"> 회원가입</button>
+        <form class="login-form" method="post" action="registerAction.jsp">
+            <input type="text" placeholder="이름" name="name" />
+            <input type="text" placeholder="ID" name="uid"/>
+            <input type="password" placeholder="PW" name="pw"/>
+            <input type="text" placeholder="email" name="email"/>
+            <button type="submit"> 회원가입</button>
             <p class="message">로그인하시겠습니까? <a href="login.jsp">로그인</a></p>
         </form>
     </div>

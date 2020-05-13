@@ -135,7 +135,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-action">
+                        <div class="card-action card-title">
                             <%= posts.getTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %>
                         </div>
                         <div class="card-content" >
