@@ -5,6 +5,7 @@
 <jsp:useBean id="write" class="posts.Posts" scope="page"/>
 <jsp:setProperty name="write" property="title"/>
 <jsp:setProperty name="write" property="contents"/>
+<jsp:setProperty name="write" property="tag"/>
 
 <!DOCTYPE html>
 <html>
@@ -37,6 +38,7 @@
     } else {
       PostsDAO postsDAO = new PostsDAO();
       //write(String title, String uid, String contents, int gid,String tag)
+      System.out.println("tag: "+write.getTag());
       int result = postsDAO.write(write.getTitle(), userID, write.getContents(),0,write.getTag());
 
       if (result == -1) {
@@ -47,7 +49,6 @@
         script.println("history.back()");
         script.println("</script>");
       } else {
-        System.out.println("writeAction error 4");
         PrintWriter script = response.getWriter();
         script.println("<script>");
         script.println("location.href = 'index.jsp'");
