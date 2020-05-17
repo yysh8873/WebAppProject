@@ -12,17 +12,17 @@ create table userinfo
 create table posts
 (cid int not null primary key,
  uid varchar(20) not null,
- gid int null,
+ gid int not null,
  title varchar(30) not null,
  contents varchar(10000) not null,
- tag varchar(30) null,
+ tag varchar(30),
  tdate date not null,
  likes int null default 0)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 create table groupinfo
 (gid int not null primary key,
  gname varchar(16) not null,
- tag varchar(30) null)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ tag varchar(30))ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 create table guserinfo
 (gid int not null,
