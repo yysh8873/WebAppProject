@@ -11,7 +11,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Deeper - 내그룹</title>
+    <title>Deeper - 내 그룹</title>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="resources/assets/materialize/css/materialize.min.css" media="screen,projection" />
@@ -42,7 +42,7 @@
             <ol class="breadcrumb">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">그룹</a></li>
-                <li class="active">내가 가입한 그룹(그룹 목록)</li>
+                <li class="active">내가 가입한 그룹</li>
             </ol>
 
         </div>
@@ -57,8 +57,8 @@
                             <p>그룹 소개, 해시태그, 그 외</p>
                         </div>
                         <div class="card-action">
-                            <a href="group.jsp">입장하기</a>
-                            <a href="#">탈퇴하기</a>
+                            <a href="groupPost.jsp">입장 하기</a>
+                            <a href="#">탈퇴 하기</a>
                         </div>
                     </div>
                 </div>
@@ -69,8 +69,8 @@
                             <p>그룹 소개, 해시태그, 그 외</p>
                         </div>
                         <div class="card-action">
-                            <a href="group.jsp">입장하기</a>
-                            <a href="#">탈퇴하기</a>
+                            <a href="groupPost.jsp">입장 하기</a>
+                            <a href="#">탈퇴 하기</a>
                         </div>
                     </div>
                 </div>
@@ -81,8 +81,8 @@
                             <p>그룹 소개, 해시태그, 그 외</p>
                         </div>
                         <div class="card-action">
-                            <a href="group.jsp">입장하기</a>
-                            <a href="#">탈퇴하기</a>
+                            <a href="groupPost.jsp">입장 하기</a>
+                            <a href="#">탈퇴 하기</a>
                         </div>
                     </div>
                 </div>
@@ -93,8 +93,8 @@
                             <p>그룹 소개, 해시태그, 그 외</p>
                         </div>
                         <div class="card-action">
-                            <a href="group.jsp">입장하기</a>
-                            <a href="#">탈퇴하기</a>
+                            <a href="groupPost.jsp">입장 하기</a>
+                            <a href="#">탈퇴 하기</a>
                         </div>
                     </div>
                 </div>
@@ -105,8 +105,8 @@
                             <p>그룹 소개, 해시태그, 그 외</p>
                         </div>
                         <div class="card-action">
-                            <a href="group.jsp">입장하기</a>
-                            <a href="#">탈퇴하기</a>
+                            <a href="groupPost.jsp">입장 하기</a>
+                            <a href="#">탈퇴 하기</a>
                         </div>
                     </div>
                 </div>
@@ -117,8 +117,8 @@
                             <p>그룹 소개, 해시태그, 그 외</p>
                         </div>
                         <div class="card-action">
-                            <a href="group.jsp">입장하기</a>
-                            <a href="#">탈퇴하기</a>
+                            <a href="groupPost.jsp">입장 하기</a>
+                            <a href="#">탈퇴 하기</a>
                         </div>
                     </div>
                 </div>

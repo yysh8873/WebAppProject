@@ -94,8 +94,8 @@
                                     if(userID != null && userID.equals(posts.getUid())){
 
                                 %>
-                                    <a href="update.jsp?cid=<%= cid %>" class="waves-effect waves-light btn blue white-text" href="index.jsp"><i class="material-icons left">visibility_off</i>삭제</a>
-                                    <a href="deleteAction.jsp?cid=<%= cid %>" class="waves-effect waves-light btn yellow text-darken-1" href="write.jsp"><i class="material-icons left">repeat</i>수정</a>
+                                    <a href="deleteAction.jsp?cid=<%= cid %>" onclick="return confirm('정말로 삭제하시겠습니까?');" class="waves-effect waves-light btn blue white-text" ><i class="material-icons left">visibility_off</i>삭제</a>
+                                    <a href="postUpdate.jsp?cid=<%= cid %>" class="waves-effect waves-light btn yellow text-darken-1" ><i class="material-icons left">repeat</i>수정</a>
                                 <%
                                     }
                                 %>

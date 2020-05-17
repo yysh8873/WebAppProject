@@ -10,6 +10,8 @@
 <%@ page import="posts.PostsDAO" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.io.PrintWriter" %>
+<jsp:useBean id="write" class="posts.Posts" scope="page"/>
+<jsp:setProperty name="write" property="title"/>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
@@ -112,12 +114,12 @@
                             <%
                                 if(pageNumber != 1) {
                             %>
-                            <a href="myPost.jsp?pageNumber=<%=pageNumber - 1%>" class="btn btn btn-light btn pull-right">이전으로</a>
+                            <a href="myPost.jsp?" class="btn btn btn-light btn pull-left">이전으로</a>
                             <%
                                 } if (postsDAO.nextPage(pageNumber + 1)) {
                                 System.out.println("pageNumber = "+ pageNumber);
                             %>
-                            <a href="myPost_my.jsp?pageNumber=<%=pageNumber + 1%>" class="btn btn btn-light btn pull-right">더보기</a>
+                            <a href="myPost_my.jsp?" class="btn btn btn-light btn pull-right">더보기</a>
                             <%
                                 }
 

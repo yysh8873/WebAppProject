@@ -106,7 +106,7 @@
                     <a href="myPost.jsp" class="active-menu waves-effect waves-dark"><i class="fa fa-desktop"></i> 내 포스트</a>
                 </li>
                 <li>
-                    <a href="myGroup.jsp" class="waves-effect waves-dark"><i class="fa fa-qrcode"></i> 그룹 </a>
+                    <a href="group.jsp" class="waves-effect waves-dark"><i class="fa fa-qrcode"></i> 그룹 </a>
                 </li>
                 <li>
                     <a href="chart.jsp" class="waves-effect waves-dark"><i class="fa fa-bar-chart-o"></i> 인기글 </a>
@@ -171,7 +171,7 @@
                             <%
                                 if(pageNumber != 1) {
                             %>
-                            <a href="myPost.jsp?pageNumber=<%=pageNumber - 1%>" class="btn btn btn-light btn pull-right">이전으로</a>
+                            <a href="myPost_my.jsp?pageNumber=<%=pageNumber - 1%>" class="btn btn btn-light btn pull-left">이전으로</a>
                             <%
                                 } if (postsDAO.nextPage(pageNumber + 1)) {
                             %>

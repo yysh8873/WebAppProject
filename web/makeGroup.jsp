@@ -10,7 +10,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Deeper - 그룹생성</title>
+  <title>Deeper - 그룹 생성</title>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <link rel="stylesheet" href="resources/assets/materialize/css/materialize.min.css" media="screen,projection" />
@@ -78,7 +78,7 @@
           <a href="myPost.jsp" class="waves-effect waves-dark"><i class="fa fa-desktop"></i> 내 포스트</a>
         </li>
         <li>
-          <a href="myGroup.jsp" class="waves-effect waves-dark"><i class="fa fa-qrcode"></i> 그룹 </a>
+          <a href="group.jsp" class="waves-effect waves-dark"><i class="fa fa-qrcode"></i> 그룹 </a>
         </li>
         <li>
           <a href="chart.jsp" class="waves-effect waves-dark"><i class="fa fa-bar-chart-o"></i> 인기글 </a>

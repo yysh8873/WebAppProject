@@ -10,7 +10,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Deeper - 그룹포스트작성</title>
+  <title>Deeper - 그룹 포스트 작성</title>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <link rel="stylesheet" href="resources/assets/materialize/css/materialize.min.css" media="screen,projection" />
@@ -36,7 +36,7 @@
   <div id="page-wrapper">
     <div class="header">
       <h1 class="page-header">
-        글쓰기
+        포스트 작성
       </h1>
       <ol class="breadcrumb">
         <li><a href="#">Home</a></li>
@@ -67,7 +67,7 @@
                   </div>
 
                   <div class="input-field col s6">
-                    <label for="textarea3">해시태그 등록</label>
+                    <label for="textarea3">#해시태그 등록 #해시태그를 붙여주세요</label>
                     <textarea class="form-control materialize-textarea" id="textarea3" name="tag"></textarea>
                   </div>
                   <div class="input-field col s12 right-align bottom-right">

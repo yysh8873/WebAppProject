@@ -13,7 +13,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Deeper</title>
+  <title>Deeper - 그룹</title>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <link rel="stylesheet" href="resources/assets/materialize/css/materialize.min.css" media="screen,projection" />
@@ -38,20 +38,20 @@
 </head>
 
 <body>
-<%@ include file="/header.jsp" %>
 <div id="wrapper">
+  <%@ include file="/header.jsp" %>
 
   <!-- /. NAV SIDE  -->
 
   <div id="page-wrapper">
     <div class="header">
       <h1 class="page-header">
-        Home
+        그룹 이름
       </h1>
       <ol class="breadcrumb">
         <li><a href="#">Home</a></li>
-        <li><a href="#">전체 포스트</a></li>
-        <li class="active">신규 포스트</li>
+        <li><a href="#">그룹</a></li>
+        <li class="active">그룹 이름</li>
       </ol>
     </div>
     <div id="page-inner">
@@ -60,6 +60,7 @@
         if(session.getAttribute("uid") != null){
           uid = (String) session.getAttribute("uid");
         }
+
         int pageNumber = 1;
         if(request.getParameter("pageNumber") != null){
           pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
@@ -77,34 +78,58 @@
                   PostsDAO postsDAO = new PostsDAO();
                   ArrayList<Posts> list = postsDAO.getList(pageNumber);
                   for(int i = 0; i < list.size(); i++){
-                    if(list.get(i).getGid() == 0) {
                 %>
-                <a href="post.jsp?cid=<%= list.get(i).getCid() %>" type="inline" style=" text-decoration:none">
+                <a href="post.jsp?cid=<%= list.get(i).getCid() %>" type="inline" style="text-decoration:none">
                   <li class="collection-item avatar">
-                    <i class="circle light-blue white-text"><%= list.get(i).getCid() %></i>
-                    <span class="title" style="text-size: 15px"><%= list.get(i).getTitle() %></span>
-                    <p><%= list.get(i).getUid() %></p>
-                    <p style="color: gray"><%= list.get(i).getTdate() %></p>
-                    <br>
-                    <p aria-colspan="2", style="max-height: 11px; text-align: left"> <%= list.get(i).getTag() %> </p>
+                    <i class="circle yellow white-text"><%= list.get(i).getCid() %></i>
+                    <span class="title"><%= list.get(i).getTitle() %></span>
+                    <p><%= list.get(i).getUid() %><br>
+                      <%= list.get(i).getContents() %>
+                    </p>
                     <a href="#!" class="secondary-content"><i class="material-icons">thumb_up</i></a>
                   </li></a>
                 <%
-                  }
                   }
                 %>
               </ul>
               <%
                 if(pageNumber != 1) {
               %>
-              <a href="index.jsp?pageNumber=<%=pageNumber - 1%>" class="btn btn btn-light btn pull-left">이전으로</a>
+              <a href="groupPost.jsp?pageNumber=<%=pageNumber - 1%>" class="btn btn btn-light btn pull-right">이전으로</a>
               <%
                 } if (postsDAO.nextPage(pageNumber + 1)) {
               %>
-              <a href="index.jsp?pageNumber=<%=pageNumber + 1%>" class="btn btn btn-light btn pull-right">다음으로</a>
+              <a href="groupPost.jsp?pageNumber=<%=pageNumber + 1%>" class="btn btn btn-light btn pull-right">다음으로</a>
               <%
                 }
               %>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+      <div class="row">
+
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-content">
+              <div class="alert alert-success">
+                <strong>회원ID</strong> 그룹장
+              </div>
+              <div class="alert alert-info">
+                <strong>회원ID</strong> 그룹원
+              </div>
+              <div class="alert alert-warning">
+                <strong>회원ID</strong> 그룹원
+              </div>
+              <div class="alert alert-danger">
+                <strong>회원ID</strong> 그룹원
+              </div>
+            </div>
+            <div class="card-action">
+              <b>가입 하기</b>
             </div>
           </div>
         </div>

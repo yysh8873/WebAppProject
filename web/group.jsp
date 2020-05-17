@@ -1,155 +1,147 @@
 <%--
   Created by IntelliJ IDEA.
   User: 이소현
-  Date: 2020-04-22
-  Time: 오후 1:21
+  Date: 2020-04-23
+  Time: 오전 10:43
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="posts.Posts" %>
-<%@ page import="posts.PostsDAO" %>
-<%@ page import="java.util.ArrayList" %>
-<html xmlns="http://www.w3.org/1999/xhtml">
+
+<html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Deeper - 그룹</title>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deeper - 그룹</title>
 
-  <link rel="stylesheet" href="resources/assets/materialize/css/materialize.min.css" media="screen,projection" />
-  <!-- Bootstrap Styles-->
-  <link href="resources/assets/css/bootstrap.css" rel="stylesheet" />
-  <!-- FontAwesome Styles-->
-  <link href="resources/assets/css/font-awesome.css" rel="stylesheet" />
-  <!-- Morris Chart Styles-->
-  <link href="resources/assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
-  <!-- Custom Styles-->
-  <link href="resources/assets/css/custom-styles.css" rel="stylesheet" />
-  <link href="resources/assets/css/custom-styles2.css" rel="stylesheet" />
-  <!-- Google Fonts-->
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-  <link rel="stylesheet" href="resources/assets/js/Lightweight-Chart/cssCharts.css">
-  <style type="text/css">
-    a, a:hover{
-      color: #000000;
-      text-decoration: none;
-    }
-  </style>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="resources/assets/materialize/css/materialize.min.css" media="screen,projection" />
+    <!-- Bootstrap Styles-->
+    <link href="resources/assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="resources/assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="resources/assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="resources/assets/css/custom-styles.css" rel="stylesheet" />
+    <link href="resources/assets/css/custom-styles2.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="resources/assets/js/Lightweight-Chart/cssCharts.css">
+
 </head>
-
 <body>
 <div id="wrapper">
-  <%@ include file="/header.jsp" %>
+    <%@ include file="/header.jsp" %>
 
-  <!-- /. NAV SIDE  -->
-
-  <div id="page-wrapper">
-    <div class="header">
-      <h1 class="page-header">
-        그룹 이름
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">그룹</a></li>
-        <li class="active">그룹 이름</li>
-      </ol>
-    </div>
-    <div id="page-inner">
-      <%
-        String uid = null;
-        if(session.getAttribute("uid") != null){
-          uid = (String) session.getAttribute("uid");
-        }
-
-        int pageNumber = 1;
-        if(request.getParameter("pageNumber") != null){
-          pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
-        }
-      %>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-action">
-              <b>포스트 목록</b>
-            </div>
-            <div class="card-image">
-              <ul class="collection">
-                <%
-                  PostsDAO postsDAO = new PostsDAO();
-                  ArrayList<Posts> list = postsDAO.getList(pageNumber);
-                  for(int i = 0; i < list.size(); i++){
-                %>
-                <a href="post.jsp?cid=<%= list.get(i).getCid() %>" type="inline" style="text-decoration:none">
-                  <li class="collection-item avatar">
-                    <i class="circle yellow white-text"><%= list.get(i).getCid() %></i>
-                    <span class="title"><%= list.get(i).getTitle() %></span>
-                    <p><%= list.get(i).getUid() %><br>
-                      <%= list.get(i).getContents() %>
-                    </p>
-                    <a href="#!" class="secondary-content"><i class="material-icons">thumb_up</i></a>
-                  </li></a>
-                <%
-                  }
-                %>
-              </ul>
-              <%
-                if(pageNumber != 1) {
-              %>
-              <a href="group.jsp?pageNumber=<%=pageNumber - 1%>" class="btn btn btn-light btn pull-right">이전으로</a>
-              <%
-                } if (postsDAO.nextPage(pageNumber + 1)) {
-              %>
-              <a href="group.jsp?pageNumber=<%=pageNumber + 1%>" class="btn btn btn-light btn pull-right">다음으로</a>
-              <%
-                }
-              %>
-            </div>
-          </div>
-
-
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper" >
+        <div class="header">
+            <h1 class="page-header">
+                그룹
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">그룹</a></li>
+                <li class="active">전체 그룹</li>
+            </ol>
 
         </div>
-      </div>
-      <div class="row">
 
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-content">
-              <div class="alert alert-success">
-                <strong>회원ID</strong> 그룹장
-              </div>
-              <div class="alert alert-info">
-                <strong>회원ID</strong> 그룹원
-              </div>
-              <div class="alert alert-warning">
-                <strong>회원ID</strong> 그룹원
-              </div>
-              <div class="alert alert-danger">
-                <strong>회원ID</strong> 그룹원
-              </div>
+        <div id="page-inner">
+
+            <div class="row">
+                <div class="col-md-4 col-sm-4">
+                    <div class="card teal">
+                        <div class="card-content white-text">
+                            <span class="card-title">그룹 이름</span>
+                            <p>그룹 소개, 해시태그, 그 외</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="groupPost.jsp">가입 하기</a>
+                            <a href="#">정보 보기</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">그룹 이름</span>
+                            <p>그룹 소개, 해시태그, 그 외</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="groupPost.jsp">가입 하기</a>
+                            <a href="#">정보 보기</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">그룹이름</span>
+                            <p>그룹 소개, 해시태그, 그 외</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="groupPost.jsp">가입 하기</a>
+                            <a href="#">정보 보기</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                    <div class="card light-green darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">그룹이름</span>
+                            <p>그룹 소개, 해시태그, 그 외</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="groupPost.jsp">가입 하기</a>
+                            <a href="#">정보 보기</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                    <div class="card red darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">그룹이름</span>
+                            <p>그룹 소개, 해시태그, 그 외</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="groupPost.jsp">가입 하기</a>
+                            <a href="#">정보 보기</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                    <div class="card yellow darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">그룹이름</span>
+                            <p>그룹 소개, 해시태그, 그 외</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="groupPost.jsp">가입 하기</a>
+                            <a href="#">정보 보기</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-4">
+                    <div class="card purple darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">원하시는 그룹이 없으신가요?</span>
+                            <p>나만의 그룹을 만들어보세요</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="makeGroup.jsp">그룹 만들기</a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-            <div class="card-action">
-              <b>가입 하기</b>
-            </div>
-          </div>
+            <!-- /. ROW  -->
+            <!-- /. ROW  -->
         </div>
-      </div>
-      <!-- /. ROW  -->
-      <div class="fixed-action-btn horizontal click-to-toggle">
-        <a class="btn-floating btn-large red">
-          <i class="material-icons">menu</i>
-        </a>
-        <ul>
-          <li><a class="btn-floating red"><i class="material-icons">track_changes</i></a></li>
-          <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-          <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-          <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
-        </ul>
-      </div>
+        <!-- /. PAGE INNER  -->
     </div>
-    <!-- /. PAGE INNER  -->
-  </div>
-  <!-- /. PAGE WRAPPER  -->
+    <!-- /. PAGE WRAPPER  -->
 </div>
 <!-- /. WRAPPER  -->
 <!-- JS Scripts-->
@@ -175,6 +167,17 @@
 
 <!-- Custom Js -->
 <script src="resources/assets/js/custom-scripts.js"></script>
+<script>
+    $(document).ready(function(){
+        $('ul.tabs').tabs();
+        $('.collapsible').collapsible({
+                accordion: false, // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+                onOpen: function(el) { alert('Open'); }, // Callback for Collapsible open
+                onClose: function(el) { alert('Closed'); } // Callback for Collapsible close
+            }
+        );
+    });
+</script>
 
 
 </body>

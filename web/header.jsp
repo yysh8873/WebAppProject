@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.io.PrintWriter" %><%--
   Created by IntelliJ IDEA.
   User: rnjst
   Date: 2020-05-17
@@ -48,6 +48,7 @@
     </li>
 </ul>
 
+
 <!--/. NAV TOP  -->
 <nav class="navbar-default navbar-side" role="navigation">
     <div class="sidebar-collapse">
@@ -59,7 +60,10 @@
                 <a href="myPost.jsp" class="waves-effect waves-dark"><i class="fa fa-desktop"></i> 내 포스트</a>
             </li>
             <li>
-                <a href="myGroup.jsp" class="waves-effect waves-dark"><i class="fa fa-qrcode"></i> 그룹 </a>
+                <a href="group.jsp" class="waves-effect waves-dark"><i class="fa fa-qrcode"></i> 그룹 </a>
+            </li>
+            <li>
+                <a href="myGroup.jsp" class="waves-effect waves-dark"><i class="fa fa-qrcode"></i> 내 그룹 </a>
             </li>
             <li>
                 <a href="chart.jsp" class="waves-effect waves-dark"><i class="fa fa-bar-chart-o"></i> 인기글 </a>
