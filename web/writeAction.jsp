@@ -38,7 +38,6 @@
     } else {
       PostsDAO postsDAO = new PostsDAO();
       //write(String title, String uid, String contents, int gid,String tag)
-      System.out.println("tag: "+write.getTag());
       int result = postsDAO.write(write.getTitle(), userID, write.getContents(),0,write.getTag());
 
       if (result == -1) {
