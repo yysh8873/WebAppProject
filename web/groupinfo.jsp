@@ -70,6 +70,8 @@
                         </div>
                         <div class="card-content">
 
+                            <p><strong>그룹 소개 : </strong><%=group.getGroupInfo(gid)%></p>
+                            <br>
                             <p><strong>대표 태그 : </strong><%=group.getGroupTag(gid)%></p>
                             <br>
                             <p><strong>그룹장 : </strong><%=group.getGroupMaster(gid)%></p>

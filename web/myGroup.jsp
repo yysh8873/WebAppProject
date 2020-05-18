@@ -1,4 +1,6 @@
-<%--
+<%@ page import="group.GroupDAO" %>
+<%@ page import="group.Group" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: 이소현
   Date: 2020-04-23
@@ -30,6 +32,23 @@
 
 </head>
 <body>
+<%
+    String userID = null;
+    if(session.getAttribute("userID") != null) {
+        userID = (String) session.getAttribute("userID");
+    }
+
+    if (userID == null) {
+        System.out.println("No login error");
+        PrintWriter script = response.getWriter();
+        script.println("<script>");
+        script.println("alert('로그인을 하세요')");
+        script.println("location.href='login.jsp'");
+        script.println("</script>");
+    }
+    else {
+    }
+%>
 <div id="wrapper">
     <%@ include file="/header.jsp" %>
 
@@ -50,90 +69,26 @@
         <div id="page-inner">
 
             <div class="row">
+                <%
+                    GroupDAO postsDAO = new GroupDAO();
+                    ArrayList<Group> list = postsDAO.getMyGroupList(userID);
+                    for(int i = 0; i < list.size(); i++){
+                %>
                 <div class="col-md-4 col-sm-4">
                     <div class="card teal">
                         <div class="card-content white-text">
-                            <span class="card-title">그룹 이름</span>
-                            <p>그룹 소개, 해시태그, 그 외</p>
+                            <span class="card-title"><%= list.get(i).getGname() %></span>
+                            <p><%= list.get(i).getTag() %></p>
                         </div>
                         <div class="card-action">
                             <a href="groupPost.jsp">입장 하기</a>
-                            <a href="#">탈퇴 하기</a>
+                            <a href="groupGetout.jsp">탈퇴 하기</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-4">
-                    <div class="card">
-                        <div class="card-content">
-                            <span class="card-title">그룹 이름</span>
-                            <p>그룹 소개, 해시태그, 그 외</p>
-                        </div>
-                        <div class="card-action">
-                            <a href="groupPost.jsp">입장 하기</a>
-                            <a href="#">탈퇴 하기</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-4">
-                    <div class="card blue-grey darken-1">
-                        <div class="card-content white-text">
-                            <span class="card-title">그룹이름</span>
-                            <p>그룹 소개, 해시태그, 그 외</p>
-                        </div>
-                        <div class="card-action">
-                            <a href="groupPost.jsp">입장 하기</a>
-                            <a href="#">탈퇴 하기</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-4">
-                    <div class="card light-green darken-1">
-                        <div class="card-content white-text">
-                            <span class="card-title">그룹이름</span>
-                            <p>그룹 소개, 해시태그, 그 외</p>
-                        </div>
-                        <div class="card-action">
-                            <a href="groupPost.jsp">입장 하기</a>
-                            <a href="#">탈퇴 하기</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-4">
-                    <div class="card red darken-1">
-                        <div class="card-content white-text">
-                            <span class="card-title">그룹이름</span>
-                            <p>그룹 소개, 해시태그, 그 외</p>
-                        </div>
-                        <div class="card-action">
-                            <a href="groupPost.jsp">입장 하기</a>
-                            <a href="#">탈퇴 하기</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-4">
-                    <div class="card yellow darken-1">
-                        <div class="card-content white-text">
-                            <span class="card-title">그룹이름</span>
-                            <p>그룹 소개, 해시태그, 그 외</p>
-                        </div>
-                        <div class="card-action">
-                            <a href="groupPost.jsp">입장 하기</a>
-                            <a href="#">탈퇴 하기</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-4">
-                    <div class="card purple darken-1">
-                        <div class="card-content white-text">
-                            <span class="card-title">원하시는 그룹이 없으신가요?</span>
-                            <p>나만의 그룹을 만들어보세요</p>
-                        </div>
-                        <div class="card-action">
-                            <a href="makeGroup.jsp">그룹 만들기</a>
-                        </div>
-                    </div>
-                </div>
+                <%
+                    }
+                %>
 
             </div>
             <!-- /. ROW  -->

@@ -22,6 +22,7 @@ create table posts
 create table groupinfo
 (gid int not null primary key,
  gname varchar(16) not null,
+ ginfo varchar(500),
  tag varchar(30),
  uid varchar(20) not null)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 //import org.mariadb.jdbc.Driver;
 import group.Group;
+import posts.Posts;
 
 public class GroupDAO {
     String driver = "org.mariadb.jdbc.Driver";
@@ -16,7 +17,7 @@ public class GroupDAO {
     private ResultSet rs;
 
     public int getNext() { //그룹번호
-        String SQL = "SELECT gid FROM groupinfo ORDER BY gid DESC";
+        String SQL = "select gid from groupinfo order by gid asc";
         try {
             PreparedStatement pstmt=conn.prepareStatement(SQL);
             rs = pstmt.executeQuery();
@@ -44,20 +45,44 @@ public class GroupDAO {
         }
     }
 
-    //select gname from join groupinfo on groupinfo.gid=guserinfo where uid = ?
-    public ArrayList<Group> getGroupList(String userId){
-        String SQL =  "select * from groupinfo where uid = ? and gid = ? order by gid desc";
+    //그룹 목록 불러오기
+    public ArrayList<Group> getGroupList(){
+        String SQL =  "select * from posts where order by gid asc";
         ArrayList<Group> list = new ArrayList<Group>();
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
-            pstmt.setString(1, userId); //유저가 가입한 그룹만
-            pstmt.setInt(2, getNext()); //그룹 하나씩
             rs = pstmt.executeQuery();
             while (rs.next()){
                 Group group = new Group();
                 group.setGid(rs.getInt(1));
                 group.setGname(rs.getString(2));
-                group.setTag(rs.getString(3));
+                group.setGinfo(rs.getString(3));
+                group.setTag(rs.getString(4));
+                group.setUid(rs.getString(5));
+                list.add(group);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    //가입한 그룹 목록 불러오기
+    public ArrayList<Group> getMyGroupList(String uid){
+        String SQL =  "select * from groupinfo join userinfo on groupinfo.gid = guserinfo.gid " +
+                "where guserinfo.uid = ?";
+        ArrayList<Group> list = new ArrayList<Group>();
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            rs = pstmt.executeQuery();
+            while (rs.next()){
+                Group group = new Group();
+                group.setGid(rs.getInt(1));
+                group.setGname(rs.getString(2));
+                group.setGinfo(rs.getString(3));
+                group.setTag(rs.getString(4));
+                group.setUid(rs.getString(5));
+                list.add(group);
             }
         } catch (Exception e){
             e.printStackTrace();
@@ -68,6 +93,21 @@ public class GroupDAO {
     //그룹 상세 정보 불러오기
     public String getGroupName(int gid){
         String SQL =  "select gname from groupinfo where gid = ?";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setInt(1, gid);
+            rs = pstmt.executeQuery();
+            rs.next();
+            return rs.getString(1);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return "-1";
+    }
+
+    //그룹 설명 불러오기
+    public String getGroupInfo(int gid){
+        String SQL =  "select ginfo from groupinfo where gid = ?";
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, gid);
