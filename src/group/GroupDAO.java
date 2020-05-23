@@ -163,4 +163,18 @@ public class GroupDAO {
         }
         return -1;
     }
+
+    public int getGid(String gname) {
+        String SQL =  "select gid from groupinfo where gname = ?";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, gname);
+            rs = pstmt.executeQuery();
+            rs.next();
+            return rs.getInt(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
 }

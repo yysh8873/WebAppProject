@@ -1,11 +1,13 @@
-<%@ page import="java.io.PrintWriter" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: rnjst
   Date: 2020-05-17
   Time: 오후 6:31
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.io.PrintWriter" %>
+
 <html>
 <head>
     <title>Title</title>
@@ -23,19 +25,22 @@
 
         <div id="sideNav" href=""><i class="material-icons dp48">toc</i></div>
     </div>
+    <form method="post" action="search.jsp">
+        <ul class="nav navbar-top-links navbar-right">
+            <li>
+                <&nbsp>
+            </li>
+            <li>
 
-    <ul class="nav navbar-top-links navbar-right">
-        <li>
-            <&nbsp>
-        </li>
-        <li>
-            <a class="input-lg waves-effect no-padding ">
-                <input type="search" class="form-control no-padding" placeholder="Search" aria-label="Search"></a>
-        </li>
-        <li><a class="button waves-effect waves-dark btn-rounded btn-sm my-0 ml-sm-2" href="search.jsp">검색</a></li>
-        <li><a href="write.jsp" class="button waves-effect waves-dark btn-rounded secondary-content"><i class="material-icons">mode_edit</i></a></li>
-        <li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1"><i class="fa fa-user fa-fw"></i> <b>로그인</b> <i class="material-icons right">arrow_drop_down</i></a></li>
-    </ul>
+                <a class="input-lg waves-effect no-padding ">
+                    <input type="search" class="form-control no-padding" placeholder="Search by Tag" aria-label="Search" name="tag"></a>
+
+            </li>
+            <li><button type="submit" class="button waves-effect waves-dark btn-rounded btn-sm my-0 ml-sm-2">검색</button></li>
+            <li><a href="write.jsp" class="button waves-effect waves-dark btn-rounded secondary-content"><i class="material-icons">mode_edit</i></a></li>
+            <li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1"><i class="fa fa-user fa-fw"></i> <b>로그인</b> <i class="material-icons right">arrow_drop_down</i></a></li>
+        </ul>
+    </form>
 </nav>
 <!-- Dropdown Structure -->
 

@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="resources/assets/js/Lightweight-Chart/cssCharts.css">
 </head>
 <div id="wrapper">
-    <%@ include file="/header.jsp" %>
+    <%@ include file="/headerGroup.jsp" %>
     <!-- /. NAV SIDE  -->
 
     <div id="page-wrapper">
@@ -55,14 +55,14 @@
                             if(request.getParameter("gid") != null){
                                 gid = Integer.parseInt(request.getParameter("gid"));
                             }
-                            if(gid == 0){
+                            if(gid == 0) {
                                 System.out.println("update error 2");
                                 PrintWriter script = response.getWriter();
                                 script.println("<script>");
                                 script.println("alert('존재하지 않는 그룹입니다')");
                                 script.println("location.href='group.jsp'");
                                 script.println("</script>");
-
+                            }
                             GroupDAO group = new GroupDAO();
                         %>
                         <div class="card-action">

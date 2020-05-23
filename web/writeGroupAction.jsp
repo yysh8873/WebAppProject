@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; chrset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="posts.PostsDAO"%>
 <%@ page import="group.GroupDAO"%>
 <%@ page import="java.io.PrintWriter"%>
@@ -42,7 +42,8 @@
       PostsDAO postsDAO = new PostsDAO();
       GroupDAO groupDAO = new GroupDAO();
       int gid=groupDAO.getGid(group.getGname());  //gname통해서 gid를 알아내고
-      System.out.println("gid: "+gid);
+      System.out.println("writeAction- gname: "+group.getGname());
+      System.out.println("wrtieAction- gid: "+gid);
       int result = postsDAO.write(write.getTitle(), userID, write.getContents(),gid,write.getTag()); //포스트할 때는 gid로 등록
 
       if (result == -1) {

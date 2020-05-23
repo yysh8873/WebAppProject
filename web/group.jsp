@@ -33,7 +33,7 @@
 </head>
 <body>
 <div id="wrapper">
-    <%@ include file="/header.jsp" %>
+    <%@ include file="/headerGroup.jsp" %>
 
     <!-- /. NAV SIDE  -->
     <div id="page-wrapper" >
