@@ -147,9 +147,9 @@ android:text="싱글 초이스 다이얼로그" />
 </LinearLayout> ', '#Android #Dialog #라디오버튼 #다이얼로그', '2020-05-17', 0);
 
 
-insert into groupinfo(gid, gname, tag) values(1, '소현이네', '#테스트1');
-insert into groupinfo(gid, gname, tag) values(2, '시연이네', '#테스트2');
-insert into groupinfo(gid, gname, tag) values(3, '주영이네', '#테스트3');
+insert into groupinfo values(1, '소현이네', '소현이네 그룹입니다', '#테스트1', 'so');
+insert into groupinfo values(2, '시연이네', '시연이네 그룹입니다', '#테스트2', 'si');
+insert into groupinfo values(3, '주영이네', '주영이네 그룹입니다', '#테스트3', 'joo');
 
 insert into guserinfo values(1, 'si', 1);
 insert into guserinfo values(1, 'joo', 1);
