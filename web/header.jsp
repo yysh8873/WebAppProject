@@ -74,7 +74,7 @@
                 <a href="chart.jsp" class="waves-effect waves-dark"><i class="fa fa-bar-chart-o"></i> 인기글 </a>
             </li>
             <li>
-                <a href="developmentTools.jsp" class="waves-effect waves-dark"><i class="fa fa-fw fa-file"></i>통합개발환경 추천</a>
+                <a href="developmentTools.jsp.jsp" class="waves-effect waves-dark"><i class="fa fa-fw fa-file"></i>통합개발환경 추천</a>
             </li>
         </ul>
     </div>
