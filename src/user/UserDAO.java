@@ -1,5 +1,7 @@
 package user;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -28,6 +30,25 @@ public class UserDAO {
 
     }
 
+    //암호화
+    public String md5(String str){
+        String MD5 = "";
+        try{
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(str.getBytes());
+            byte byteData[] = md.digest();
+            StringBuffer sb = new StringBuffer();
+            for(int i = 0 ; i < byteData.length ; i++){
+                sb.append(Integer.toString((byteData[i]&0xff) + 0x100, 16).substring(1));
+            }
+            MD5 = sb.toString();
+        }catch(NoSuchAlgorithmException e){
+            e.printStackTrace();
+            MD5 = null;
+        }
+        return MD5;
+    }
+
     public int login(String uid, String pw){
         String SQL = "SELECT pw FROM userinfo WHERE uid = ?";
         try {
@@ -36,7 +57,7 @@ public class UserDAO {
             rs = pstmt.executeQuery();
             if (rs.next()){
                 // 아이디가 있는 경우
-                if (rs.getString(1).equals(pw)){
+                if (rs.getString(1).equals(md5(pw))){
                     return 1; // 로그인 성공
                 }
                 else {
@@ -58,7 +79,7 @@ public class UserDAO {
             pstmt.setString(1, uid);
             pstmt.setString(2, name);
             pstmt.setString(3, email);
-            pstmt.setString(4, pw); //(name, uid, email, pw)
+            pstmt.setString(4, md5(pw)); //(name, uid, email, pw)
             return pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

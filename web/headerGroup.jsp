@@ -37,7 +37,7 @@
 
             </li>
             <li><button type="submit" class="button waves-effect waves-dark btn-rounded btn-sm my-0 ml-sm-2">검색</button></li>
-            <li><a href="write.jsp" class="button waves-effect waves-dark btn-rounded secondary-content"><i class="material-icons">mode_edit</i></a></li>
+            <li><a href="writeGroup.jsp" class="button waves-effect waves-dark btn-rounded secondary-content"><i class="material-icons">mode_edit</i></a></li>
             <li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1"><i class="fa fa-user fa-fw"></i> <b>로그인</b> <i class="material-icons right">arrow_drop_down</i></a></li>
         </ul>
     </form>
@@ -74,7 +74,7 @@
                 <a href="chart.jsp" class="waves-effect waves-dark"><i class="fa fa-bar-chart-o"></i> 인기글 </a>
             </li>
             <li>
-                <a href="developmentTools.jsp" class="waves-effect waves-dark"><i class="fa fa-fw fa-file"></i>통합개발환경 추천</a>
+                <a href="introduction.jsp" class="waves-effect waves-dark"><i class="fa fa-fw fa-file"></i>홈페이지 소개</a>
             </li>
         </ul>
     </div>

@@ -56,7 +56,6 @@ public class PostsDAO {
         }
         return -1; //db 오류
     }
-
     // 게시글 작성
     public int write(String title, String uid, String contents, int gid,String tag) {
         System.out.println("cid : " + getNext());
@@ -142,6 +141,33 @@ public class PostsDAO {
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             pstmt.setString(1, userId); // 로그인 한 아이디와 작성자 아이디와 일치
+            pstmt.setInt(2, getNext() - (pageNumber -1) * 10); // 한 페이지에 10개씩
+            rs = pstmt.executeQuery(); // 실제 실행 시, 나오는 결과
+            while (rs.next()){
+                Posts posts = new Posts(); // 데이터 담기
+                posts.setCid(rs.getInt(1));
+                posts.setUid(rs.getString(2));
+                posts.setGid(rs.getInt(3));
+                posts.setTitle(rs.getString(4));
+                posts.setContents(rs.getString(5));
+                posts.setTag(rs.getString(6));
+                posts.setTdate(rs.getString(7));
+                posts.setLikes(rs.getInt(8));
+                list.add(posts);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    // 검색한 게시글 찾기
+    public ArrayList<Posts> getPostByTag(int pageNumber, String tag){
+        String SQL =  "SELECT * FROM posts WHERE cid < ? AND tag LIKE '%?%' ORDER BY cid DESC LIMIT 10";
+        ArrayList<Posts> list = new ArrayList<Posts>();
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, tag); // 로그인 한 아이디와 작성자 아이디와 일치
             pstmt.setInt(2, getNext() - (pageNumber -1) * 10); // 한 페이지에 10개씩
             rs = pstmt.executeQuery(); // 실제 실행 시, 나오는 결과
             while (rs.next()){

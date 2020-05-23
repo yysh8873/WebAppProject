@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 이소현
-  Date: 2020-04-22
-  Time: 오후 1:21
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -30,7 +23,7 @@
 
 <body>
 <div id="wrapper">
-  <%@ include file="/header.jsp" %>
+  <%@ include file="/headerGroup.jsp" %>
   <!-- /. NAV SIDE  -->
 
   <div id="page-wrapper">
@@ -49,7 +42,7 @@
         <div class="col-md-12">
           <div class="card">
             <div class="card-content">
-              <form class="col s12" method="posts" action="writeGroupAction.jsp">
+              <form class="col s12" method="post" action="writeGroupAction.jsp" accept-charset="utf-8">
                 <div class="row">
                   <div class="input-field col s12">
                     <textarea id="textarea1" class="materialize-textarea" name="title"></textarea>
@@ -57,8 +50,8 @@
                   </div>
 
                   <div class="input-field col s12">
-                    <textarea id="textarea4" class="materialize-textarea" name="gid"></textarea>
-                    <label for="textarea4">소속 그룹</label>
+                    <textarea id="textarea4" class="materialize-textarea" name="gname"></textarea>
+                    <label for="textarea1">소속 그룹</label>
                   </div>
 
                   <div class="input-field col s12">
@@ -71,7 +64,7 @@
                     <textarea class="form-control materialize-textarea" id="textarea3" name="tag"></textarea>
                   </div>
                   <div class="input-field col s12 right-align bottom-right">
-                    <button type="submit"> upload </button>
+                    <button type="submit" class="waves-effect waves-light btn yellow black-text"><i class="material-icons left">done</i>Upload</button>
                   </div>
                 </div>
               </form>

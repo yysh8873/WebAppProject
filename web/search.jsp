@@ -1,10 +1,11 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 이소현
-  Date: 2020-04-22
-  Time: 오후 1:21
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="posts.Posts" %>
+<%@ page import="posts.PostsDAO" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.io.PrintWriter" %>
+<jsp:useBean id="search" class="posts.Posts" scope="page"/>
+<jsp:setProperty name="search" property="tag"/>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -45,6 +46,13 @@
       </ol>
     </div>
     <div id="page-inner">
+      <%
+        System.out.println("pageNumber ok");
+        int pageNumber = 1;
+        if(request.getParameter("pageNumber") != null){
+          pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
+        }
+      %>
       <div class="row">
         <div class="col-md-12">
           <div class="card">
@@ -56,39 +64,49 @@
                 <a href="posts.jsp" type="inline" style="text-decoration:none">
                   <li class="collection-item avatar">
                     <i class="material-icons circle yellow">track_changes</i>
-                    <span class="title">글 제목</span>
+                    <!--<span class="title">글 제목</span>
                     <p>글쓴이<br>
                       게시글 미리보기
                     </p>
                     <a href="#!" class="secondary-content"><i class="material-icons">thumb_up</i></a>
-                  </li></a>
-                <a href="posts.jsp" type="inline" style="text-decoration:none">
+                    -->
+                      <%
+                           PostsDAO postsDAO = new PostsDAO();
+                           ArrayList<Posts> list = postsDAO.getPostByTag(pageNumber, search.getTag());
+                           System.out.println("search.jsp -pageNumber = "+ pageNumber);
+                           System.out.println("search.jsp -tag = "+ search.getTag());
+                           for(int i = 0; i < list.size(); i++){
+
+                      %>
+                    <a href="post.jsp?cid=<%= list.get(i).getCid() %>" type="inline" style="text-decoration:none">
                   <li class="collection-item avatar">
-                    <i class="material-icons circle">folder</i>
-                    <span class="title">글 제목</span>
-                    <p>글쓴이<br>
-                      게시글 미리보기
-                    </p>
+                    <i class="circle light-blue white-text"><%= list.get(i).getCid() %></i>
+                    <span class="title" style="text-size: 15px"><%= list.get(i).getTitle() %></span>
+                    <p><%= list.get(i).getUid() %></p>
+                    <p style="color: gray"><%= list.get(i).getTdate() %></p>
+                    <br>
+                    <p aria-colspan="2", style="max-height: 11px; text-align: left"> <%= list.get(i).getTag() %> </p>
                     <a href="#!" class="secondary-content"><i class="material-icons">thumb_up</i></a>
                   </li></a>
-                <a href="posts.jsp" type="inline" style="text-decoration:none">
-                  <li class="collection-item avatar">
-                    <i class="material-icons circle yellow">track_changes</i>
-                    <span class="title">글제목</span>
-                    <p>글쓴이<br>
-                      게시글 미리보기
-                    </p>
-                    <a href="#!" class="secondary-content"><i class="material-icons">thumb_up</i></a>
+                <%
+                  }
+                %>
+              </ul>
+              <%
+                if(pageNumber != 1) {
+              %>
+              <a href="myPost.jsp?" class="btn btn btn-light btn pull-left">이전으로</a>
+              <%
+                } if (postsDAO.nextPage(pageNumber + 1)) {
+                System.out.println("pageNumber = "+ pageNumber);
+              %>
+              <a href="myPost_my.jsp?" class="btn btn btn-light btn pull-right">더보기</a>
+              <%
+                }
+
+              %>
                   </li></a>
-                <a href="posts.jsp" type="inline" style="text-decoration:none">
-                  <li class="collection-item avatar">
-                    <i class="material-icons circle">folder</i>
-                    <span class="title">글 제목</span>
-                    <p>글쓴이<br>
-                      게시글 미리보기
-                    </p>
-                    <a href="#!" class="secondary-content"><i class="material-icons">thumb_up</i></a>
-                  </li></a>
+
               </ul>
             </div>
           </div>

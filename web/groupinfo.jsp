@@ -1,19 +1,19 @@
-<%@ page import="group.GroupDAO" %>
-<%@ page import="group.Group" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%--
   Created by IntelliJ IDEA.
-  User: 이소현
-  Date: 2020-04-23
-  Time: 오전 10:43
+  User: 우주영
+  Date: 2020-05-15
+  Time: 오후 10:54
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.io.PrintWriter" %>
+<%@ page import="group.GroupDAO" %>
+<html xmlns="http://www.w3.org/1999/xhtml">
 
-<html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Deeper - 내 그룹</title>
+    <title>Deeper - 그룹 상세 정보</title>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="resources/assets/materialize/css/materialize.min.css" media="screen,projection" />
@@ -29,70 +29,65 @@
     <!-- Google Fonts-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <link rel="stylesheet" href="resources/assets/js/Lightweight-Chart/cssCharts.css">
-
 </head>
-<body>
-<%
-    String userID = null;
-    if(session.getAttribute("userID") != null) {
-        userID = (String) session.getAttribute("userID");
-    }
-
-    if (userID == null) {
-        System.out.println("No login error");
-        PrintWriter script = response.getWriter();
-        script.println("<script>");
-        script.println("alert('로그인을 하세요')");
-        script.println("location.href='login.jsp'");
-        script.println("</script>");
-    }
-    else {
-    }
-%>
 <div id="wrapper">
     <%@ include file="/headerGroup.jsp" %>
-
     <!-- /. NAV SIDE  -->
-    <div id="page-wrapper" >
+
+    <div id="page-wrapper">
         <div class="header">
-            <h1 class="page-header">
-                그룹
-            </h1>
+            <h3 class="page-header">
+                그룹 정보
+            </h3>
             <ol class="breadcrumb">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">그룹</a></li>
-                <li class="active">내가 가입한 그룹</li>
+                <li class="active">그룹 상세 정보</li>
             </ol>
-
         </div>
-
         <div id="page-inner">
-
             <div class="row">
-                <%
-                    GroupDAO postsDAO = new GroupDAO();
-                    ArrayList<Group> list = postsDAO.getMyGroupList(userID);
-                    for(int i = 0; i < list.size(); i++){
-                %>
-                <div class="col-md-4 col-sm-4">
-                    <div class="card teal">
-                        <div class="card-content white-text">
-                            <span class="card-title"><%= list.get(i).getGname() %></span>
-                            <p><%= list.get(i).getTag() %></p>
-                        </div>
+                <div class="col-md-12">
+                    <div class="card">
+                        <%
+                            int gid = 0;
+
+                            if(request.getParameter("gid") != null){
+                                gid = Integer.parseInt(request.getParameter("gid"));
+                            }
+                            if(gid == 0) {
+                                System.out.println("update error 2");
+                                PrintWriter script = response.getWriter();
+                                script.println("<script>");
+                                script.println("alert('존재하지 않는 그룹입니다')");
+                                script.println("location.href='group.jsp'");
+                                script.println("</script>");
+                            }
+                            GroupDAO group = new GroupDAO();
+                        %>
                         <div class="card-action">
-                            <a href="groupPost.jsp">입장 하기</a>
-                            <a href="groupGetout.jsp">탈퇴 하기</a>
+                            <%=group.getGroupName(gid)%>
+                        </div>
+                        <div class="card-content">
+
+                            <p><strong>그룹 소개 : </strong><%=group.getGroupInfo(gid)%></p>
+                            <br>
+                            <p><strong>대표 태그 : </strong><%=group.getGroupTag(gid)%></p>
+                            <br>
+                            <p><strong>그룹장 : </strong><%=group.getGroupMaster(gid)%></p>
+                            <br>
+                            <p><strong>그룹원 수 : </strong> <%=group.getGroupCount(gid)%> </p>
+                            <div class="input-field col s12 right-align bottom-right">
+                                <a class="waves-effect waves-light btn yellow" href="groupJoin.jsp"><i class="material-icons left">repeat</i>가입하기</a>
+                            </div>
+                            <div class="clearBoth"><br/></div>
+
                         </div>
                     </div>
                 </div>
-                <%
-                    }
-                %>
-
+                <!-- /. PAGE INNER  -->
             </div>
-            <!-- /. ROW  -->
-            <!-- /. ROW  -->
+            <!-- /. PAGE WRAPPER  -->
         </div>
         <!-- /. PAGE INNER  -->
     </div>
@@ -122,19 +117,7 @@
 
 <!-- Custom Js -->
 <script src="resources/assets/js/custom-scripts.js"></script>
-<script>
-    $(document).ready(function(){
-        $('ul.tabs').tabs();
-        $('.collapsible').collapsible({
-                accordion: false, // A setting that changes the collapsible behavior to expandable instead of the default accordion style
-                onOpen: function(el) { alert('Open'); }, // Callback for Collapsible open
-                onClose: function(el) { alert('Closed'); } // Callback for Collapsible close
-            }
-        );
-    });
-</script>
 
 
 </body>
-
 </html>

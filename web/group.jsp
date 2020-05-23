@@ -1,4 +1,6 @@
-<%--
+<%@ page import="group.GroupDAO" %>
+<%@ page import="group.Group" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: 이소현
   Date: 2020-04-23
@@ -31,7 +33,7 @@
 </head>
 <body>
 <div id="wrapper">
-    <%@ include file="/header.jsp" %>
+    <%@ include file="/headerGroup.jsp" %>
 
     <!-- /. NAV SIDE  -->
     <div id="page-wrapper" >
@@ -48,81 +50,7 @@
         </div>
 
         <div id="page-inner">
-
             <div class="row">
-                <div class="col-md-4 col-sm-4">
-                    <div class="card teal">
-                        <div class="card-content white-text">
-                            <span class="card-title">그룹 이름</span>
-                            <p>그룹 소개, 해시태그, 그 외</p>
-                        </div>
-                        <div class="card-action">
-                            <a href="groupPost.jsp">가입 하기</a>
-                            <a href="#">정보 보기</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-4">
-                    <div class="card">
-                        <div class="card-content">
-                            <span class="card-title">그룹 이름</span>
-                            <p>그룹 소개, 해시태그, 그 외</p>
-                        </div>
-                        <div class="card-action">
-                            <a href="groupPost.jsp">가입 하기</a>
-                            <a href="#">정보 보기</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-4">
-                    <div class="card blue-grey darken-1">
-                        <div class="card-content white-text">
-                            <span class="card-title">그룹이름</span>
-                            <p>그룹 소개, 해시태그, 그 외</p>
-                        </div>
-                        <div class="card-action">
-                            <a href="groupPost.jsp">가입 하기</a>
-                            <a href="#">정보 보기</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-4">
-                    <div class="card light-green darken-1">
-                        <div class="card-content white-text">
-                            <span class="card-title">그룹이름</span>
-                            <p>그룹 소개, 해시태그, 그 외</p>
-                        </div>
-                        <div class="card-action">
-                            <a href="groupPost.jsp">가입 하기</a>
-                            <a href="#">정보 보기</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-4">
-                    <div class="card red darken-1">
-                        <div class="card-content white-text">
-                            <span class="card-title">그룹이름</span>
-                            <p>그룹 소개, 해시태그, 그 외</p>
-                        </div>
-                        <div class="card-action">
-                            <a href="groupPost.jsp">가입 하기</a>
-                            <a href="#">정보 보기</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-4">
-                    <div class="card yellow darken-1">
-                        <div class="card-content white-text">
-                            <span class="card-title">그룹이름</span>
-                            <p>그룹 소개, 해시태그, 그 외</p>
-                        </div>
-                        <div class="card-action">
-                            <a href="groupPost.jsp">가입 하기</a>
-                            <a href="#">정보 보기</a>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="col-md-4 col-sm-4">
                     <div class="card purple darken-1">
                         <div class="card-content white-text">
@@ -134,6 +62,26 @@
                         </div>
                     </div>
                 </div>
+                <%
+                    GroupDAO postsDAO = new GroupDAO();
+                    ArrayList<Group> list = postsDAO.getGroupList();
+                    for(int i = 0; i < list.size(); i++){
+                %>
+                <div class="col-md-4 col-sm-4">
+                    <div class="card teal">
+                        <div class="card-content white-text">
+                            <span class="card-title"><%= list.get(i).getGname() %></span>
+                            <p><%= list.get(i).getTag() %></p>
+                        </div>
+                        <div class="card-action">
+                            <a href="groupinfo.jsp?cid=<%= list.get(i).getGid() %>">정보 보기</a>
+                            <a href="groupApply.jsp?cid=<%= list.get(i).getGid()%>">가입 신청</a>
+                        </div>
+                    </div>
+                </div>
+                <%
+                    }
+                %>
 
             </div>
             <!-- /. ROW  -->
