@@ -49,6 +49,7 @@ public class UserDAO {
         return MD5;
     }
 
+    // 로그인
     public int login(String uid, String pw){
         String SQL = "SELECT pw FROM userinfo WHERE uid = ?";
         try {
@@ -69,6 +70,23 @@ public class UserDAO {
             e.printStackTrace();
         }
         return -1; // 데이터베이스 오류
+    }
+
+    // 회원정보 수정. 업데이트.
+    public int updateUserInfo(String uid, String pw, String name, String email) {
+        String SQL = "update userinfo set name=?, email=?, pw=? where uid=?";
+        try {
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, name);
+            pstmt.setString(2, email);
+            pstmt.setString(3, md5(pw));
+            pstmt.setString(4, uid); //(name, uid, email, pw)
+            return pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("DB 오류");
+        }
+        return -1; // DB Error
     }
 
     //회원가입
@@ -138,6 +156,7 @@ public class UserDAO {
         return -1; // 데이터베이스 오류
     }
 
+    // ID를 통해 이름 검색
     public String myName(String uid) {
         String SQL = "SELECT name FROM userinfo WHERE uid = ?";
         try {
