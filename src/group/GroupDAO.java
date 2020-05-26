@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 //import org.mariadb.jdbc.Driver;
 import group.Group;
-import posts.Posts;
 
 public class GroupDAO {
     String driver = "org.mariadb.jdbc.Driver";
@@ -74,6 +73,7 @@ public class GroupDAO {
         ArrayList<Group> list = new ArrayList<Group>();
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, uid);
             rs = pstmt.executeQuery();
             while (rs.next()){
                 Group group = new Group();
