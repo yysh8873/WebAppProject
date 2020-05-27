@@ -144,7 +144,7 @@ android:layout_height="wrap_content"
 android:layout_below="@+id/textView1"
 android:layout_weight="1"
 android:text="싱글 초이스 다이얼로그" />
-</LinearLayout> ', '#Android #Dialog #라디오버튼 #다이얼로그', '2020-05-17', 0);
+</LinearLayout> ', 'Android Dialog', '2020-05-17', 0);
 
 
 insert into groupinfo values(1, '소현이네', '소현이네 그룹입니다', '#테스트1', 'so');
@@ -160,19 +160,29 @@ insert into guserinfo values(2, 'joo', 1);
 
 insert into guserinfo values(3, 'so', 1);
 
-insert into likes(cid, uid) values (11, 'so');
-insert into likes(cid, uid) values (12, 'so');
-insert into likes(cid, uid) values (13, 'so');
-insert into likes(cid, uid) values (13, 'si');
-insert into likes(cid, uid) values (13, 'joo');
-insert into likes(cid, uid) values (15, 'so');
-insert into likes(cid, uid) values (16, 'so');
-insert into likes(cid, uid) values (17, 'so');
-insert into likes(cid, uid) values (18, 'so');
-insert into likes(cid, uid) values (19, 'so');
+insert into likes values (11, 'so');
+insert into likes values (12, 'so');
+insert into likes values (13, 'so');
+insert into likes values (13, 'si');
+insert into likes values (13, 'joo');
+insert into likes values (15, 'so');
+insert into likes values (16, 'so');
+insert into likes values (17, 'so');
+insert into likes values (18, 'so');
+insert into likes values (19, 'so');
 
 select * from userinfo;
 select * from posts;
 select * from groupinfo;
 select * from guserinfo;
 select * from likes;
+
+SELECT DISTINCT likes.*
+FROM likes, posts
+WHERE likes.cid = posts.cid
+  AND likes.uid = 'so' AND likes.cid = 13;
+
+SELECT *
+FROM likes, posts
+WHERE likes.cid = posts.cid
+  AND likes.uid = 'so' AND posts.cid = 13;

@@ -8,7 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="posts.Posts" %>
 <%@ page import="posts.PostsDAO" %>
+<%@ page import="java.io.PrintWriter"%>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="user.UserDAO" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="utf-8" />
@@ -56,14 +58,16 @@
     </div>
     <div id="page-inner">
       <%
-        String uid = null;
-        if(session.getAttribute("uid") != null){
-          uid = (String) session.getAttribute("uid");
+        String userID = null;
+        if(session.getAttribute("userID")!=null) {
+          userID = (String) session.getAttribute("userID");
         }
+
         int pageNumber = 1;
         if(request.getParameter("pageNumber") != null){
           pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
         }
+
       %>
       <div class="row">
         <div class="col-md-12">
@@ -75,22 +79,32 @@
               <ul class="collection">
                 <%
                   PostsDAO postsDAO = new PostsDAO();
-                  ArrayList<Posts> list = postsDAO.getList(pageNumber);
+                  ArrayList<Posts> list = postsDAO.getList(pageNumber, userID);
                   for(int i = 0; i < list.size(); i++){
                     if(list.get(i).getGid() == 0) {
                 %>
                 <a href="post.jsp?cid=<%= list.get(i).getCid() %>" type="inline" style=" text-decoration:none">
                   <li class="collection-item avatar">
-                    <i class="circle light-blue white-text"><%= list.get(i).getCid() %></i>
+                    <i class="circle light-blue white-text" name="cid" ><%= list.get(i).getCid() %></i>
                     <span class="title" style="text-size: 15px"><%= list.get(i).getTitle() %></span>
                     <p><%= list.get(i).getUid() %></p>
                     <p style="color: gray"><%= list.get(i).getTdate() %></p>
                     <br>
                     <p aria-colspan="2", style="max-height: 11px; text-align: left"> <%= list.get(i).getTag() %> </p>
-                    <a href="#!" class="secondary-content"><i class="material-icons">thumb_up</i></a>
+
+                    <%
+                      if(userID == null){
+                    %>
+                    <%
+                    } else if (userID != null && (postsDAO.getYouLike(list.get(i).getCid(), userID)).equals(userID)) {
+                        System.out.println("like ok");
+                    %>
+                    <a href="likeAction.jsp" class="secondary-content"><i class="material-icons">thumb_up</i></a>
                   </li></a>
-                <%
-                  }
+                    <%
+                      } else
+                         System.out.println("like error, return = " + postsDAO.getYouLike(list.get(i).getCid(), userID));
+                    }
                   }
                 %>
               </ul>

@@ -31,6 +31,13 @@
     <!-- Google Fonts-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <link rel="stylesheet" href="resources/assets/js/Lightweight-Chart/cssCharts.css">
+
+    <style type="text/css">
+        a, a:hover{
+            color: #000000;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
 <%
@@ -55,6 +62,7 @@
     }
 
     Posts posts = new PostsDAO().getPost(cid);
+    PostsDAO postsDAO = new PostsDAO();
 %>
 <div id="wrapper">
     <%@ include file="/header.jsp" %>
@@ -87,7 +95,7 @@
                                 <%= posts.getContents().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></p>
                             <br>
                             <hr>
-                            <p><strong>등록된 해시태그 [ <%= posts.getTag() %> ] </strong> </p>
+                            <p><strong>등록된 해시태그 #<a href="https://www.google.com/search?q=<%= posts.getTag() %>"> <%= posts.getTag() %> </a> </strong></p>
                             <br>
                             <div class="input-field col s12 right-align bottom-right">
                                 <%
@@ -98,8 +106,16 @@
                                     <a href="postUpdate.jsp?cid=<%= cid %>" class="waves-effect waves-light btn yellow text-darken-1" ><i class="material-icons left">repeat</i>수정</a>
                                 <%
                                     }
+                                    if((userID != null && (postsDAO.getYouLike(cid, userID)).equals(userID))) {
                                 %>
-                                <a class="waves-effect waves-light btn"><i class="material-icons left">thumb_up</i>좋아요</a>
+                                <a href="deleteLikeAction.jsp?cid=<%= cid %>" class="waves-effect waves-light btn"><i class="material-icons left">thumb_up</i>좋아요 취소</a>
+                                <%
+                                    } else {
+                                %>
+                                <a href="updateLikeAction.jsp?cid=<%= cid %>" class="waves-effect waves-light btn"><i class="material-icons left">thumb_up</i>좋아요</a>
+                                <%
+                                    }
+                                %>
                                 <a href="index.jsp" class="waves-effect waves-light btn pink" href="write.jsp"><i class="material-icons left">done</i>확인</a>
                             </div>
                             <div class="clearBoth"><br/></div>

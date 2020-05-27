@@ -59,6 +59,15 @@
                 userID = (String) session.getAttribute("userID");
               }
 
+              if(userID==null) {
+                System.out.println("writeAction error 1");
+                PrintWriter script = response.getWriter();
+                script.println("<script>");
+                script.println("alert('로그인을 하세요')");
+                script.println("location.href='login.jsp'");
+                script.println("</script>");
+              }
+
               UserDAO user = new UserDAO();
             %>
             <div class="card-action">

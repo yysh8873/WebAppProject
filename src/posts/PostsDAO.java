@@ -56,6 +56,7 @@ public class PostsDAO {
         }
         return -1; //db 오류
     }
+
     // 게시글 작성
     public int write(String title, String uid, String contents, int gid,String tag) {
         System.out.println("cid : " + getNext());
@@ -79,7 +80,7 @@ public class PostsDAO {
     }
 
     // 특정 리스트 반환, 총 10개의 게시글 반환
-    public ArrayList<Posts> getList(int pageNumber){
+    public ArrayList<Posts> getList(int pageNumber, String userID){
         String SQL =  "SELECT * FROM posts WHERE cid < ? ORDER BY cid DESC LIMIT 10";
         ArrayList<Posts> list = new ArrayList<Posts>();
         try {
@@ -124,6 +125,7 @@ public class PostsDAO {
                 posts.setTag(rs.getString(6));
                 posts.setTdate(rs.getString(7));
                 posts.setLikes(rs.getInt(8));
+
                 list.add(posts);
             }
         } catch (Exception e){
@@ -153,6 +155,7 @@ public class PostsDAO {
                 posts.setTag(rs.getString(6));
                 posts.setTdate(rs.getString(7));
                 posts.setLikes(rs.getInt(8));
+
                 list.add(posts);
             }
         } catch (Exception e){
@@ -230,6 +233,86 @@ public class PostsDAO {
         return null;
     }
 
+    // 게시글 수정
+    public int update(int cid, String title, String contents, String tag){
+        System.out.println("cid : " + getNext());
+        String SQL = "UPDATE posts SET title = ?, contents = ?, tag = ? WHERE cid = ?";
+        try {
+            PreparedStatement pstmt=conn.prepareStatement(SQL);
+            pstmt.setString(1,title);
+            pstmt.setString(2,contents);
+            pstmt.setString(3,tag);
+            pstmt.setInt(4, cid);
+            return pstmt.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("PostsDAO update() error");
+            e.printStackTrace();
+        }
+        return -1; // 데이터베이스 오류
+    }
 
+    // 게시글 삭제
+    public int delete(int cid){
+        System.out.println("cid : " + getNext());
+        String SQL = "DELETE FROM posts WHERE cid = ?";
+        try {
+            PreparedStatement pstmt=conn.prepareStatement(SQL);
+            pstmt.setInt(1, cid);
+            return pstmt.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("PostsDAO update() error");
+            e.printStackTrace();
+        }
+        return -1; // 데이터베이스 오류
+    }
+
+    // 좋아요 여부 반환 - 좋아요 누른 uid 반환
+    public String getYouLike(int cid, String userID) {
+        String SQL = "SELECT uid FROM likes where cid = ? AND uid = ? ";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setInt(1, cid); // 물음표에 해당하는 부분에 uid 넣기
+            pstmt.setString(2, userID); // 확인한 게시글과 좋아요한 게시글 일치
+            rs = pstmt.executeQuery();
+            rs.next();
+            return rs.getString(1);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "DB Error"; // 데이터베이스 오류
+    }
+
+    // 좋아요 반영
+    public int updateLike(int cid, String uid){
+        System.out.println("cid : " + getNext());
+        String SQL = "insert into likes values(?, ?)";
+        try {
+            PreparedStatement pstmt=conn.prepareStatement(SQL);
+            pstmt.setInt(1, cid);
+            pstmt.setString(2, uid);
+
+            return pstmt.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("PostsDAO updateLike() error");
+            e.printStackTrace();
+        }
+        return -1; // 데이터베이스 오류
+    }
+
+    // 좋아요 삭제
+    public int deleteLike(int cid, String uid){
+        System.out.println("cid : " + getNext());
+        String SQL = "DELETE FROM likes WHERE cid = ? AND uid = ?";
+        try {
+            PreparedStatement pstmt=conn.prepareStatement(SQL);
+            pstmt.setInt(1, cid);
+            pstmt.setString(2, uid);
+            return pstmt.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("PostsDAO deleteLike() error");
+            e.printStackTrace();
+        }
+        return -1; // 데이터베이스 오류
+    }
 
 }

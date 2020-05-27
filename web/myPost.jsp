@@ -105,9 +105,18 @@
                                         <p style="color: gray"><%= list.get(i).getTdate() %></p>
                                         <br>
                                         <p aria-colspan="2", style="max-height: 11px; text-align: left"> <%= list.get(i).getTag() %> </p>
+                                        <%
+                                            if(userID == null){
+                                        %>
+                                        <%
+                                        } else if (userID != null && (postsDAO.getYouLike(list.get(i).getCid(), userID)).equals(userID)) {
+                                            System.out.println("like ok");
+                                        %>
                                         <a href="#!" class="secondary-content"><i class="material-icons">thumb_up</i></a>
                                     </li></a>
                                 <%
+                                        } else
+                                            System.out.println("like error, return = " + postsDAO.getYouLike(list.get(i).getCid(), userID));
                                     }
                                 %>
                             </ul>
@@ -152,9 +161,18 @@
                                         <p style="color: gray"><%= list2.get(i).getTdate() %></p>
                                         <br>
                                         <p aria-colspan="2", style="max-height: 11px; text-align: left"> <%= list2.get(i).getTag() %> </p>
+                                        <%
+                                            if(userID == null){
+                                        %>
+                                        <%
+                                        } else if (userID != null && (postsDAO2.getYouLike(list2.get(i).getCid(), userID)).equals(userID)) {
+                                            System.out.println("like ok");
+                                        %>
                                         <a href="#!" class="secondary-content"><i class="material-icons">thumb_up</i></a>
                                     </li></a>
                                 <%
+                                        } else
+                                            System.out.println("like error, return = " + postsDAO2.getYouLike(list2.get(i).getCid(), userID));
                                     }
                                 %>
                             </ul>
