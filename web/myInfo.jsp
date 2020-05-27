@@ -66,9 +66,11 @@
             </div>
             <div class="card-content">
 
+              <p><strong>ID :</strong><%=userID%> </p>
+              <br>
               <p><strong>이름 :</strong> <%=user.myName(userID)%> </p>
               <br>
-              <p><strong>ID :</strong><%=userID%> </p>
+              <p><strong>이메일 :</strong> <%=user.myEmail(userID)%> </p>
               <br>
               <p><strong>게시글 수 :</strong> <%=user.myPostCnt(userID)%> </p>
               <br>

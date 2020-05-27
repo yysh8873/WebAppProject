@@ -170,4 +170,19 @@ public class UserDAO {
         }
         return "-1"; // 데이터베이스 오류
     }
+
+    // ID를 통해 이메일 검색
+    public String myEmail(String uid) {
+        String SQL = "SELECT email FROM userinfo WHERE uid = ?";
+        try {
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, uid); // 물음표에 해당하는 부분에 uid 넣기
+            rs = pstmt.executeQuery();
+            rs.next();
+            return rs.getString(1);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "-1"; // 데이터베이스 오류
+    }
 }
