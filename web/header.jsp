@@ -76,9 +76,6 @@
             <li>
                 <a href="developmentTools.jsp" class="waves-effect waves-dark"><i class="fa fa-fw fa-file"></i>통합개발환경 추천</a>
             </li>
-            <li>
-                <a href="upload.jsp" class="waves-effect waves-dark"><i class="fa fa-fw fa-file"></i>통합개발환경 추천</a>
-            </li>
         </ul>
     </div>
 

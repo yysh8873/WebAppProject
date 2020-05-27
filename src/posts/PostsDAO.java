@@ -166,7 +166,7 @@ public class PostsDAO {
 
     // 검색한 게시글 찾기
     public ArrayList<Posts> getPostByTag(int pageNumber, String tag){
-        String SQL =  "SELECT * FROM posts WHERE cid < ? AND tag LIKE '%?%' ORDER BY cid DESC LIMIT 10";
+        String SQL =  "SELECT * FROM posts WHERE cid < ? AND tag LIKE %?% ORDER BY cid DESC LIMIT 10";
         ArrayList<Posts> list = new ArrayList<Posts>();
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);

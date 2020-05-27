@@ -63,8 +63,8 @@
                     </div>
                 </div>
                 <%
-                    GroupDAO postsDAO = new GroupDAO();
-                    ArrayList<Group> list = postsDAO.getGroupList();
+                    GroupDAO groupDAO = new GroupDAO();
+                    ArrayList<Group> list = groupDAO.getGroupList();
                     for(int i = 0; i < list.size(); i++){
                 %>
                 <div class="col-md-4 col-sm-4">

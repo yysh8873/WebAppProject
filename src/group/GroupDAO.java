@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 //import org.mariadb.jdbc.Driver;
 import group.Group;
-import posts.Posts;
 
 public class GroupDAO {
     String driver = "org.mariadb.jdbc.Driver";
@@ -47,7 +46,7 @@ public class GroupDAO {
 
     //그룹 목록 불러오기
     public ArrayList<Group> getGroupList(){
-        String SQL =  "select * from posts where order by gid asc";
+        String SQL =  "select * from groupinfo";
         ArrayList<Group> list = new ArrayList<Group>();
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -69,11 +68,12 @@ public class GroupDAO {
 
     //가입한 그룹 목록 불러오기
     public ArrayList<Group> getMyGroupList(String uid){
-        String SQL =  "select * from groupinfo join userinfo on groupinfo.gid = guserinfo.gid " +
+        String SQL =  "select * from groupinfo join guserinfo on groupinfo.gid = guserinfo.gid " +
                 "where guserinfo.uid = ?";
         ArrayList<Group> list = new ArrayList<Group>();
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, uid);
             rs = pstmt.executeQuery();
             while (rs.next()){
                 Group group = new Group();

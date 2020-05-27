@@ -70,8 +70,8 @@
 
             <div class="row">
                 <%
-                    GroupDAO postsDAO = new GroupDAO();
-                    ArrayList<Group> list = postsDAO.getMyGroupList(userID);
+                    GroupDAO groupDAO = new GroupDAO();
+                    ArrayList<Group> list = groupDAO.getMyGroupList(userID);
                     for(int i = 0; i < list.size(); i++){
                 %>
                 <div class="col-md-4 col-sm-4">
