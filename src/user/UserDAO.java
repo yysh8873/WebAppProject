@@ -1,5 +1,7 @@
 package user;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -28,6 +30,26 @@ public class UserDAO {
 
     }
 
+    //암호화
+    public String md5(String str){
+        String MD5 = "";
+        try{
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(str.getBytes());
+            byte byteData[] = md.digest();
+            StringBuffer sb = new StringBuffer();
+            for(int i = 0 ; i < byteData.length ; i++){
+                sb.append(Integer.toString((byteData[i]&0xff) + 0x100, 16).substring(1));
+            }
+            MD5 = sb.toString();
+        }catch(NoSuchAlgorithmException e){
+            e.printStackTrace();
+            MD5 = null;
+        }
+        return MD5;
+    }
+
+    // 로그인
     public int login(String uid, String pw){
         String SQL = "SELECT pw FROM userinfo WHERE uid = ?";
         try {
@@ -36,7 +58,7 @@ public class UserDAO {
             rs = pstmt.executeQuery();
             if (rs.next()){
                 // 아이디가 있는 경우
-                if (rs.getString(1).equals(pw)){
+                if (rs.getString(1).equals(md5(pw))){
                     return 1; // 로그인 성공
                 }
                 else {
@@ -50,6 +72,23 @@ public class UserDAO {
         return -1; // 데이터베이스 오류
     }
 
+    // 회원정보 수정. 업데이트.
+    public int updateUserInfo(String uid, String pw, String name, String email) {
+        String SQL = "update userinfo set name=?, email=?, pw=? where uid=?";
+        try {
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, name);
+            pstmt.setString(2, email);
+            pstmt.setString(3, md5(pw));
+            pstmt.setString(4, uid); //(name, uid, email, pw)
+            return pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("DB 오류");
+        }
+        return -1; // DB Error
+    }
+
     //회원가입
     public int register(String uid, String name, String email, String pw) {
         String SQL = "INSERT INTO userinfo value (?, ?, ?, ?)";
@@ -58,7 +97,7 @@ public class UserDAO {
             pstmt.setString(1, uid);
             pstmt.setString(2, name);
             pstmt.setString(3, email);
-            pstmt.setString(4, pw); //(name, uid, email, pw)
+            pstmt.setString(4, md5(pw)); //(name, uid, email, pw)
             return pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -117,6 +156,7 @@ public class UserDAO {
         return -1; // 데이터베이스 오류
     }
 
+    // ID를 통해 이름 검색
     public String myName(String uid) {
         String SQL = "SELECT name FROM userinfo WHERE uid = ?";
         try {
@@ -131,5 +171,18 @@ public class UserDAO {
         return "-1"; // 데이터베이스 오류
     }
 
-
+    // ID를 통해 이메일 검색
+    public String myEmail(String uid) {
+        String SQL = "SELECT email FROM userinfo WHERE uid = ?";
+        try {
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, uid); // 물음표에 해당하는 부분에 uid 넣기
+            rs = pstmt.executeQuery();
+            rs.next();
+            return rs.getString(1);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "-1"; // 데이터베이스 오류
+    }
 }

@@ -99,7 +99,7 @@
                     } else if (userID != null && (postsDAO.getYouLike(list.get(i).getCid(), userID)).equals(userID)) {
                         System.out.println("like ok");
                     %>
-                    <a href="likeAction.jsp" class="secondary-content"><i class="material-icons">thumb_up</i></a>
+                    <a href="#" class="secondary-content"><i class="material-icons">thumb_up</i></a>
                   </li></a>
                     <%
                       } else

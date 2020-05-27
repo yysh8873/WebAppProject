@@ -58,16 +58,6 @@
               if(session.getAttribute("userID")!=null) {
                 userID = (String) session.getAttribute("userID");
               }
-
-              if(userID==null) {
-                System.out.println("writeAction error 1");
-                PrintWriter script = response.getWriter();
-                script.println("<script>");
-                script.println("alert('로그인을 하세요')");
-                script.println("location.href='login.jsp'");
-                script.println("</script>");
-              }
-
               UserDAO user = new UserDAO();
             %>
             <div class="card-action">
@@ -75,9 +65,11 @@
             </div>
             <div class="card-content">
 
+              <p><strong>ID :</strong><%=userID%> </p>
+              <br>
               <p><strong>이름 :</strong> <%=user.myName(userID)%> </p>
               <br>
-              <p><strong>ID :</strong><%=userID%> </p>
+              <p><strong>이메일 :</strong> <%=user.myEmail(userID)%> </p>
               <br>
               <p><strong>게시글 수 :</strong> <%=user.myPostCnt(userID)%> </p>
               <br>
