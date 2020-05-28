@@ -15,21 +15,6 @@ public class GroupDAO {
     private PreparedStatement pstmt;
     private ResultSet rs;
 
-    public int getNext() { //그룹번호
-        String SQL = "select gid from groupinfo order by gid asc";
-        try {
-            PreparedStatement pstmt=conn.prepareStatement(SQL);
-            rs = pstmt.executeQuery();
-            if (rs.next()) {
-                return rs.getInt(1)+1;
-            }
-            return 1;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return -1; //db 오류
-    }
-
     public GroupDAO() {
         try {
             String url = "jdbc:mariadb://localhost:3306/deeper"; //3307로 저장 됐을 수 있으니 한번씩 확인해주세요
@@ -44,6 +29,21 @@ public class GroupDAO {
         }
     }
 
+    // group ID
+    public int getNext() {
+        String SQL = "SELECT gid FROM groupinfo ORDER BY gid DESC";
+        try {
+            PreparedStatement pstmt=conn.prepareStatement(SQL);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1)+1;
+            }
+            return 1; //첫번째 게시글
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1; //db 오류
+    }
     //그룹 목록 불러오기
     public ArrayList<Group> getGroupList(){
         String SQL =  "select * from groupinfo";
@@ -118,6 +118,26 @@ public class GroupDAO {
             e.printStackTrace();
         }
         return "-1";
+    }
+
+    // 그룹 생성
+    public int makeGroup(String gname, String ginfo, String tag, String uid) {
+        String SQL = "insert into groupinfo(gid, gname, ginfo, tag, uid) values(?, ?, ?, ?, ?)";
+        
+        try {
+            PreparedStatement pstmt=conn.prepareStatement(SQL);
+            pstmt.setInt(1,getNext());
+            pstmt.setString(2,gname);
+            pstmt.setString(3,ginfo);
+            pstmt.setString(4,tag);
+            pstmt.setString(5,uid);
+
+            return pstmt.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("GroupDAO makeGroup() error");
+            e.printStackTrace();
+        }
+        return -1; //DB오류
     }
 
     public String getGroupTag(int gid){

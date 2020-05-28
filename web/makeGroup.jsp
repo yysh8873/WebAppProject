@@ -30,66 +30,7 @@
 
 <body>
 <div id="wrapper">
-  <nav class="navbar navbar-default top-navbar" role="navigation">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle waves-effect waves-dark" data-toggle="collapse" data-target=".sidebar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand waves-effect waves-dark" href="index.jsp"><i class="large material-icons">trending_down</i> <strong>Deeper</strong></a>
-
-      <div id="sideNav" href=""><i class="material-icons dp48">toc</i></div>
-    </div>
-
-    <ul class="nav navbar-top-links navbar-right">
-      <li>
-        <&nbsp>
-      </li>
-      <li>
-        <a class="input-lg waves-effect no-padding ">
-          <input type="search" class="form-control no-padding" placeholder="Search" aria-label="Search"></a>
-      </li>
-      <li><a class="button waves-effect waves-dark btn-rounded btn-sm my-0 ml-sm-2" href="search.jsp">검색</a></li>
-      <li><a href="write.jsp" class="button waves-effect waves-dark btn-rounded secondary-content"><i class="material-icons">mode_edit</i></a></li>
-      <li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1"><i class="fa fa-user fa-fw"></i> <b>로그인</b> <i class="material-icons right">arrow_drop_down</i></a></li>
-    </ul>
-  </nav>
-  <!-- Dropdown Structure -->
-
-  <ul id="dropdown1" class="dropdown-content">
-    <li><a href="myInfo.jsp"><i class="fa fa-user fa-fw"></i> 회원정보 보기</a>
-    </li>
-    <li><a href="changeUserInfo.jsp"><i class="fa fa-gear fa-fw"></i> 회원정보 수정</a>
-    </li>
-    <li><a href="login.jsp"><i class="fa fa-sign-out fa-fw"></i> 로그아웃</a>
-    </li>
-  </ul>
-
-  <!--/. NAV TOP  -->
-  <nav class="navbar-default navbar-side" role="navigation">
-    <div class="sidebar-collapse">
-      <ul class="nav" id="main-menu">
-        <li>
-          <a class="waves-effect waves-dark" href="index.jsp"><i class="fa fa-dashboard"></i>Home</a>
-        </li>
-        <li>
-          <a href="myPost.jsp" class="waves-effect waves-dark"><i class="fa fa-desktop"></i> 내 포스트</a>
-        </li>
-        <li>
-          <a href="group.jsp" class="waves-effect waves-dark"><i class="fa fa-qrcode"></i> 그룹 </a>
-        </li>
-        <li>
-          <a href="chart.jsp" class="waves-effect waves-dark"><i class="fa fa-bar-chart-o"></i> 인기글 </a>
-        </li>
-        <li>
-          <a href="developmentTools.jsp" class="waves-effect waves-dark"><i class="fa fa-fw fa-file"></i>홈페이지 소개</a>
-        </li>
-      </ul>
-    </div>
-
-  </nav>
+  <%@ include file="/headerGroup.jsp" %>
   <!-- /. NAV SIDE  -->
 
   <div id="page-wrapper">
@@ -108,24 +49,24 @@
         <div class="col-md-12">
           <div class="card">
             <div class="card-content">
-              <form class="col s12">
+              <form class="col s12" method="post" action="makeGroupAction.jsp">
                 <div class="row">
                   <div class="input-field col s12">
-                    <textarea id="textarea1" class="materialize-textarea"></textarea>
+                    <textarea id="textarea1" class="materialize-textarea" name="gname"></textarea>
                     <label for="textarea1">그룹명</label>
                   </div>
 
                   <div class="input-field col s12">
                     <label for="textarea2">그룹 소개</label>
-                    <textarea class="form-control materialize-textarea" id="textarea2" rows="3"></textarea>
+                    <textarea class="form-control materialize-textarea" id="textarea2" rows="3" name="ginfo"></textarea>
                   </div>
 
                   <div class="input-field col s6">
-                    <label for="textarea2">주요 해시태그</label>
-                    <textarea class="form-control materialize-textarea" id="textarea3"></textarea>
+                    <label for="textarea3">주요 해시태그</label>
+                    <textarea class="form-control materialize-textarea" id="textarea3" name="tag"></textarea>
                   </div>
                   <div class="input-field col s12 right-align bottom-right">
-                    <a class="waves-effect waves-light btn purple"><i class="material-icons left">done</i>Register</a>
+                    <button type="submit" class="waves-effect waves-light btn purple"><i class="material-icons left">done</i>Register</button>
                   </div>
                 </div>
               </form>
