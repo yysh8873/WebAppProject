@@ -30,6 +30,7 @@
   if(request.getParameter("cid") != null){
     cid = Integer.parseInt(request.getParameter("cid"));
   }
+
   if(cid == 0){
     System.out.println("updateAction error 2");
     PrintWriter script = response.getWriter();
@@ -45,8 +46,9 @@
       // public int update(int cid, String title, String contents, String tag)
       // public int updateLike(int cid, String uid)
       int result = postsDAO.updateLike(cid, userID);
+      int result2 = postsDAO.updateLike2(cid);
 
-      if (result == -1) {
+      if (result == -1 || result2 == -1) {
         System.out.println("updateAction error 5");
         PrintWriter script = response.getWriter();
         script.println("<script>");
@@ -56,7 +58,7 @@
       } else {
         PrintWriter script = response.getWriter();
         script.println("<script>");
-        script.println("location.href = 'post.jsp'");
+        script.println("location.href = 'myPost_likes.jsp'");
         script.println("</script>");
       }
 %>

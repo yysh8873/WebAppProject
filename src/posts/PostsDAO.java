@@ -80,7 +80,7 @@ public class PostsDAO {
     }
 
     // 특정 리스트 반환, 총 10개의 게시글 반환
-    public ArrayList<Posts> getList(int pageNumber, String userID){
+    public ArrayList<Posts> getList(int pageNumber){
         String SQL =  "SELECT * FROM posts WHERE cid < ? ORDER BY cid DESC LIMIT 10";
         ArrayList<Posts> list = new ArrayList<Posts>();
         try {
@@ -193,7 +193,7 @@ public class PostsDAO {
 
     // 게시글 목록 페이징 처리
     public boolean nextPage(int pageNumber){
-        String SQL = "SELECT * FROM posts WHERE cid < ? AND cid >= 1";
+        String SQL = "SELECT * FROM posts WHERE cid < ?";
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, getNext() - (pageNumber - 1) * 10); // 한 페이지에 10개씩
@@ -299,6 +299,23 @@ public class PostsDAO {
         return -1; // 데이터베이스 오류
     }
 
+    // 좋아요 반영 : posts 테이블에
+    public int updateLike2(int cid){
+        System.out.println("cid : " + getNext());
+        String SQL = "UPDATE posts SET likes = ? WHERE cid = ?";
+        try {
+            PreparedStatement pstmt=conn.prepareStatement(SQL);
+            pstmt.setInt(1, getPost(cid).getLikes()+1); // 좋아요 하나 추가
+            pstmt.setInt(2, cid);
+
+            return pstmt.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("PostsDAO updateLike2 error");
+            e.printStackTrace();
+        }
+        return -1; // 데이터베이스 오류
+    }
+
     // 좋아요 삭제
     public int deleteLike(int cid, String uid){
         System.out.println("cid : " + getNext());
@@ -315,4 +332,48 @@ public class PostsDAO {
         return -1; // 데이터베이스 오류
     }
 
+    // 좋아요 삭제
+    public int deleteLike2(int cid) {
+        System.out.println("cid : " + getNext());
+        String SQL = "UPDATE posts SET likes = ? WHERE cid = ?";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setInt(1, getPost(cid).getLikes() - 1); // 좋아요 하나 삭제
+            pstmt.setInt(2, cid);
+
+            return pstmt.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("PostsDAO updateLike2 error");
+            e.printStackTrace();
+        }
+        return -1; // 데이터베이스 오류
+    }
+
+    // 특정 리스트 반환, 총 10개의 게시글 반환
+    public ArrayList<Posts> getListLike(int pageNumber){
+        String SQL =  "SELECT * FROM posts WHERE cid < ? ORDER BY likes DESC LIMIT 10";
+        ArrayList<Posts> list = new ArrayList<Posts>();
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            // getNext() : 그 다음으로 작성될 글의 번호
+            // - 현재 5개일 경우 -> 6, pageNumber는 1, 결과는  6
+            pstmt.setInt(1, getNext() - (pageNumber -1) * 10); // 한 페이지에 10개씩
+            rs = pstmt.executeQuery(); // 실제 실행 시, 나오는 결과
+            while (rs.next()){
+                Posts posts = new Posts(); // 데이터 담기
+                posts.setCid(rs.getInt(1));
+                posts.setUid(rs.getString(2));
+                posts.setGid(rs.getInt(3));
+                posts.setTitle(rs.getString(4));
+                posts.setContents(rs.getString(5));
+                posts.setTag(rs.getString(6));
+                posts.setTdate(rs.getString(7));
+                posts.setLikes(rs.getInt(8));
+                list.add(posts);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return list;
+    }
 }

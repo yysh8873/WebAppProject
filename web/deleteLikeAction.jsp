@@ -30,6 +30,7 @@
   if(request.getParameter("cid") != null){
     cid = Integer.parseInt(request.getParameter("cid"));
   }
+
   if(cid == 0){
     System.out.println("deleteLikeAction error 2");
     PrintWriter script = response.getWriter();
@@ -43,9 +44,11 @@
 
   PostsDAO postsDAO = new PostsDAO();
       // public int deleteLike(int cid, String uid)
+     //public int deleteLike2(int cid)
       int result = postsDAO.deleteLike(cid, userID);
+      int result2 = postsDAO.deleteLike2(cid);
 
-      if (result == -1) {
+      if (result == -1 || result2 == -1) {
         System.out.println("deleteLikeAction error 4");
         PrintWriter script = response.getWriter();
         script.println("<script>");
@@ -55,7 +58,7 @@
       } else {
         PrintWriter script = response.getWriter();
         script.println("<script>");
-        script.println("location.href = 'index.jsp'");
+        script.println("location.href = 'myPost_likes.jsp'");
         script.println("</script>");
       }
 %>

@@ -95,10 +95,25 @@
                                 <%= posts.getContents().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></p>
                             <br>
                             <hr>
-                            <p><strong>등록된 해시태그 #<a href="https://www.google.com/search?q=<%= posts.getTag() %>"> <%= posts.getTag() %> </a> </strong></p>
+                            <p><strong>등록된 해시태그 #<a href="#"> <%= posts.getTag() %> </a> </strong></p>
                             <br>
+
+                            <form method=get action="http://www.google.co.kr/search">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <input type=text name=q size=25 maxlength=255 value="" />
+                                            <!-- 구글 검색 입력 창 -->
+                                            <input class="waves-effect waves-light btn red white-text right-align bottom-right" type=submit name=btnG value="Google 검색"/>
+                                            <!-- 검색 버튼 -->
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
+
                             <div class="input-field col s12 right-align bottom-right">
                                 <%
+
                                     if(userID != null && userID.equals(posts.getUid())){
 
                                 %>

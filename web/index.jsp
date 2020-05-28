@@ -79,7 +79,7 @@
               <ul class="collection">
                 <%
                   PostsDAO postsDAO = new PostsDAO();
-                  ArrayList<Posts> list = postsDAO.getList(pageNumber, userID);
+                  ArrayList<Posts> list = postsDAO.getList(pageNumber);
                   for(int i = 0; i < list.size(); i++){
                     if(list.get(i).getGid() == 0) {
                 %>
@@ -111,11 +111,11 @@
               <%
                 if(pageNumber != 1) {
               %>
-              <a href="index.jsp?pageNumber=<%=pageNumber - 1%>" class="btn btn btn-light btn pull-left">이전으로</a>
+                <a href="index.jsp?pageNumber=<%=pageNumber - 1%>" class="btn btn btn-light btn pull-left">이전으로</a>
               <%
                 } if (postsDAO.nextPage(pageNumber + 1)) {
               %>
-              <a href="index.jsp?pageNumber=<%=pageNumber + 1%>" class="btn btn btn-light btn pull-right">다음으로</a>
+                <a href="index.jsp?pageNumber=<%=pageNumber + 1%>" class="btn btn btn-light btn pull-right">다음으로</a>
               <%
                 }
               %>
@@ -124,17 +124,7 @@
         </div>
       </div>
       <!-- /. ROW  -->
-      <div class="fixed-action-btn horizontal click-to-toggle">
-        <a class="btn-floating btn-large red">
-          <i class="material-icons">menu</i>
-        </a>
-        <ul>
-          <li><a class="btn-floating red"><i class="material-icons">track_changes</i></a></li>
-          <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-          <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-          <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
-        </ul>
-      </div>
+
     </div>
     <!-- /. PAGE INNER  -->
   </div>

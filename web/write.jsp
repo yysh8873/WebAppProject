@@ -55,7 +55,7 @@
 
                   <div class="form-group">
                     <label for="textarea1">글 제목</label>
-                    <input type="textarea" id="textarea1" name="title" class="form-control" id="exampleInputEmail1" placeholder="글제목을 입력해주세요">
+                    <input type="textarea" id="textarea1" name="title" class="form-control" placeholder="글제목을 입력해주세요">
                   </div>
 
                   <div class="input-field col s12">
@@ -85,17 +85,7 @@
     <!-- /. PAGE WRAPPER  -->
   </div>
   <!-- /. ROW  -->
-  <div class="fixed-action-btn horizontal click-to-toggle">
-    <a class="btn-floating btn-large red">
-      <i class="material-icons">menu</i>
-    </a>
-    <ul>
-      <li><a class="btn-floating red"><i class="material-icons">track_changes</i></a></li>
-      <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-      <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-      <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
-    </ul>
-  </div>
+
 </div>
 <!-- /. PAGE INNER  -->
 </div>
