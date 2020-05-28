@@ -41,8 +41,7 @@ create table likes
 show databases;
 show tables;
 
-
-insert into userinfo(uid, name, email, pw) values('test', '테스트', 'test@hs.ac.kr', '81dc9bdb52d04dc20036dbd8313ed055');
+insert into userinfo(uid, name, email, pw) values('test', '테스트','test@hs.ac.kr', '81dc9bdb52d04dc20036dbd8313ed055');
 insert into userinfo(uid, name, email, pw) values('so', '이소현', 'so@hs.ac.kr', '50cf4ed21677bd01c4949a5efb3bd2e4');
 insert into userinfo(uid, name, email, pw) values('si', '권시연', 'si@hs.ac.kr', '26de6dfe43c2254a87dc531c13d855b3');
 insert into userinfo(uid, name, email, pw) values('joo', '우주영', 'joo@hs.ac.kr', '02181d2859fa44abb9f0eb4f3a237fa9');
