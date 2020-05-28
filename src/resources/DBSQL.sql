@@ -42,10 +42,10 @@ show databases;
 show tables;
 
 
-insert into userinfo(uid, name, email, pw) values('test', '테스트', 'test@hs.ac.kr', 1234);
-insert into userinfo(uid, name, email, pw) values('so', '이소현', 'so@hs.ac.kr', 'so11');
-insert into userinfo(uid, name, email, pw) values('si', '권시연', 'si@hs.ac.kr', 'si22');
-insert into userinfo(uid, name, email, pw) values('joo', '우주영', 'joo@hs.ac.kr', 'joo33');
+insert into userinfo(uid, name, email, pw) values('test', '테스트', 'test@hs.ac.kr', '81dc9bdb52d04dc20036dbd8313ed055');
+insert into userinfo(uid, name, email, pw) values('so', '이소현', 'so@hs.ac.kr', '50cf4ed21677bd01c4949a5efb3bd2e4');
+insert into userinfo(uid, name, email, pw) values('si', '권시연', 'si@hs.ac.kr', '26de6dfe43c2254a87dc531c13d855b3');
+insert into userinfo(uid, name, email, pw) values('joo', '우주영', 'joo@hs.ac.kr', '02181d2859fa44abb9f0eb4f3a237fa9');
 
 insert into posts values(1, 'so', 0, '테스트게시물1', '테스트 게시물1을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트1 #테스트2', '2020-01-06', 0);
 insert into posts values(2, 'so', 1, '테스트게시물2', '테스트 게시물2을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트2 #테스트3', '2020-05-06', 0);
@@ -64,7 +64,7 @@ insert into posts values(12, 'joo', 0, '테스트게시물12', '테스트 게시
 insert into posts values(13, 'joo', 0, '테스트게시물13', '테스트 게시물13을 불러오는데 성공했습니다. 축하합니다^0^', '#테스트13', '2020-05-09', 3);
 
 insert into posts
-values(14, 'so', 0, '에잇(Prod.&Feat. SUGA of BTS)',                                                                             'So are you happy now
+values(14, 'so', 0, '에잇(Prod.&Feat. SUGA of BTS)', 'So are you happy now
 Finally happy now are you
 
 뭐 그대로야 난
