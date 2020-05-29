@@ -134,6 +134,33 @@ public class PostsDAO {
         return list;
     }
 
+    // 특정 리스트 반환, 총 10개의 게시글 반환
+    public ArrayList<Posts> getGroupList(int pageNumber, int gid){
+        String SQL =  "SELECT * FROM posts WHERE cid < ? and gid = ? ORDER BY cid DESC LIMIT 10";
+        ArrayList<Posts> list = new ArrayList<Posts>();
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setInt(1, getNext() - (pageNumber -1) * 10); // 한 페이지에 10개씩
+            pstmt.setInt(2, gid);
+            rs = pstmt.executeQuery(); // 실제 실행 시, 나오는 결과
+            while (rs.next()){
+                Posts posts = new Posts(); // 데이터 담기
+                posts.setCid(rs.getInt(1));
+                posts.setUid(rs.getString(2));
+                posts.setGid(rs.getInt(3));
+                posts.setTitle(rs.getString(4));
+                posts.setContents(rs.getString(5));
+                posts.setTag(rs.getString(6));
+                posts.setTdate(rs.getString(7));
+                posts.setLikes(rs.getInt(8));
+                list.add(posts);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return list;
+    }
+
     // 내가 좋아요 한 리스트 반환, 총 10개의 게시글 반환
     public ArrayList<Posts> getMyLikeList(int pageNumber, String userId){
         System.out.println("uid : " + userId + ", likes: ");

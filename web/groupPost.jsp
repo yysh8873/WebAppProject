@@ -9,6 +9,8 @@
 <%@ page import="posts.Posts" %>
 <%@ page import="posts.PostsDAO" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="group.GroupDAO" %>
+<%@ page import="group.Group" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="utf-8" />
@@ -58,12 +60,35 @@
       <%
         String uid = null;
         if(session.getAttribute("uid") != null){
-          uid = (String) session.getAttribute("uid");
+            uid = (String) session.getAttribute("uid");
+        }
+
+        if (uid == null) {
+            System.out.println("No login error");
+            PrintWriter script = response.getWriter();
+            script.println("<script>");
+            script.println("alert('로그인을 하세요')");
+            script.println("location.href='login.jsp'");
+            script.println("</script>");
         }
 
         int pageNumber = 1;
         if(request.getParameter("pageNumber") != null){
-          pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
+            pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
+        }
+
+        int gid = 0;
+
+        if(request.getParameter("gid") != null){
+            gid = Integer.parseInt(request.getParameter("gid"));
+        }
+        if(gid == 0) {
+            System.out.println("update error 2");
+            PrintWriter script = response.getWriter();
+            script.println("<script>");
+            script.println("alert('존재하지 않는 그룹입니다')");
+            script.println("history.back()");
+            script.println("</script>");
         }
       %>
       <div class="row">
@@ -76,7 +101,8 @@
               <ul class="collection">
                 <%
                   PostsDAO postsDAO = new PostsDAO();
-                  ArrayList<Posts> list = postsDAO.getList(pageNumber);
+                  GroupDAO groupDAO = new GroupDAO();
+                  ArrayList<Posts> list = postsDAO.getGroupList(pageNumber, gid);
                   for(int i = 0; i < list.size(); i++){
                 %>
                 <a href="post.jsp?cid=<%= list.get(i).getCid() %>" type="inline" style="text-decoration:none">
@@ -116,17 +142,18 @@
           <div class="card">
             <div class="card-content">
               <div class="alert alert-success">
-                <strong>회원ID</strong> 그룹장
+                <strong><%=groupDAO.getGroupMaster(gid)%></strong> 그룹장
               </div>
+                <%
+                    ArrayList<Group> guserlist = groupDAO.getGPeopleList(gid);
+                    for(int i = 0; i < guserlist.size(); i++){
+                %>
               <div class="alert alert-info">
-                <strong>회원ID</strong> 그룹원
+                <strong><%= list.get(i).getUid()%></strong> 그룹원
               </div>
-              <div class="alert alert-warning">
-                <strong>회원ID</strong> 그룹원
-              </div>
-              <div class="alert alert-danger">
-                <strong>회원ID</strong> 그룹원
-              </div>
+                <%
+                    }
+                %>
             </div>
             <div class="card-action">
               <b>가입 하기</b>

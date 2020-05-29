@@ -197,4 +197,24 @@ public class GroupDAO {
         }
         return -1;
     }
+
+    public ArrayList<Group> getGPeopleList(int gid){
+        String SQL =  "select * from guserinfo where gid = ?";
+        ArrayList<Group> list = new ArrayList<Group>();
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setInt(1, gid);
+            rs = pstmt.executeQuery();
+            while (rs.next()){
+                Group group = new Group();
+                group.setGid(rs.getInt(1));
+                group.setUid(rs.getString(2));
+                group.setIsIn(rs.getInt(3));
+                list.add(group);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return list;
+    }
 }

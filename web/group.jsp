@@ -74,8 +74,8 @@
                             <p><%= list.get(i).getTag() %></p>
                         </div>
                         <div class="card-action">
-                            <a href="groupinfo.jsp?cid=<%= list.get(i).getGid() %>">정보 보기</a>
-                            <a href="groupApply.jsp?cid=<%= list.get(i).getGid()%>">가입 신청</a>
+                            <a href="groupinfo.jsp?gid=<%= list.get(i).getGid() %>">정보 보기</a>
+                            <a href="groupApply.jsp?gid=<%= list.get(i).getGid()%>">가입 신청</a>
                         </div>
                     </div>
                 </div>
