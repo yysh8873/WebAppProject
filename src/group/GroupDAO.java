@@ -199,7 +199,7 @@ public class GroupDAO {
     }
 
     public ArrayList<Group> getGPeopleList(int gid){
-        String SQL =  "select * from guserinfo where gid = ?";
+        String SQL =  "select * from guserinfo where gid = ? and isIn = 1";
         ArrayList<Group> list = new ArrayList<Group>();
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
