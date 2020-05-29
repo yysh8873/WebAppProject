@@ -171,7 +171,7 @@ public class GroupDAO {
     }
 
     public int getGroupCount(int gid){
-        String SQL =  "select count(*) from guserinfo where gid = ? and isIn = 1";
+        String SQL =  "select count(*)+1 from guserinfo where gid = ? and isIn = 1";
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, gid);

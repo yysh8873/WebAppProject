@@ -26,6 +26,8 @@ create table groupinfo
  tag varchar(30),
  uid varchar(20) not null)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- isIn 1: 그룹원 0: 승인대기
+-- 그룹원 정보 테이블에는 그룹장은 쓰지 않음
 create table guserinfo
 (gid int not null,
  uid varchar(20) not null,
