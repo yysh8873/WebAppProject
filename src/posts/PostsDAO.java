@@ -192,13 +192,13 @@ public class PostsDAO {
     }
 
     // 검색한 게시글 찾기
-    public ArrayList<Posts> getPostByTag(int pageNumber, String tag){
-        String SQL =  "SELECT * FROM posts WHERE cid < ? AND tag LIKE %?% ORDER BY cid DESC LIMIT 10";
+    public ArrayList<Posts> getPostByTitle(int pageNumber, String title){
+        String SQL =  "SELECT * FROM posts WHERE cid < ? AND title LIKE ? ORDER BY cid DESC LIMIT 10";
         ArrayList<Posts> list = new ArrayList<Posts>();
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
-            pstmt.setString(1, tag); // 로그인 한 아이디와 작성자 아이디와 일치
-            pstmt.setInt(2, getNext() - (pageNumber -1) * 10); // 한 페이지에 10개씩
+            pstmt.setInt(1, getNext() - (pageNumber -1) * 10); // 한 페이지에 10개씩
+            pstmt.setString(2, "%"+title+"%");
             rs = pstmt.executeQuery(); // 실제 실행 시, 나오는 결과
             while (rs.next()){
                 Posts posts = new Posts(); // 데이터 담기

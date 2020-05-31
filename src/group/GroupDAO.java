@@ -123,7 +123,7 @@ public class GroupDAO {
     // 그룹 생성
     public int makeGroup(String gname, String ginfo, String tag, String uid) {
         String SQL = "insert into groupinfo(gid, gname, ginfo, tag, uid) values(?, ?, ?, ?, ?)";
-        
+
         try {
             PreparedStatement pstmt=conn.prepareStatement(SQL);
             pstmt.setInt(1,getNext());

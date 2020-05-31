@@ -10,6 +10,7 @@
 
 <html>
 <head>
+    <meta charset="utf-8" />
     <title>Title</title>
 </head>
 <body>
@@ -33,7 +34,7 @@
             <li>
 
                 <a class="input-lg waves-effect no-padding ">
-                    <input type="search" class="form-control no-padding" placeholder="Search by Tag" aria-label="Search" name="tag"></a>
+                    <input type="text" class="form-control no-padding" placeholder="Search by Title" aria-label="Search" name="title"></a>
 
             </li>
             <li><button type="submit" class="button waves-effect waves-dark btn-rounded btn-sm my-0 ml-sm-2">검색</button></li>

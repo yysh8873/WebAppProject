@@ -1,10 +1,11 @@
-<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="posts.Posts" %>
 <%@ page import="posts.PostsDAO" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.io.PrintWriter" %>
+<% request.setCharacterEncoding("UTF-8"); %>
 <jsp:useBean id="search" class="posts.Posts" scope="page"/>
-<jsp:setProperty name="search" property="tag"/>
+<jsp:setProperty name="search" property="title"/>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -72,9 +73,9 @@
                     -->
                       <%
                            PostsDAO postsDAO = new PostsDAO();
-                           ArrayList<Posts> list = postsDAO.getPostByTag(pageNumber, search.getTag());
+                           ArrayList<Posts> list = postsDAO.getPostByTitle(pageNumber, search.getTitle());
                            System.out.println("search.jsp -pageNumber = "+ pageNumber);
-                           System.out.println("search.jsp -tag = "+ search.getTag());
+                           System.out.println("search.jsp -tag = "+ search.getTitle());
                            for(int i = 0; i < list.size(); i++){
 
                       %>
