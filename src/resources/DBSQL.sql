@@ -152,14 +152,20 @@ insert into groupinfo values(1, '소현이네', '소현이네 그룹입니다', 
 insert into groupinfo values(2, '시연이네', '시연이네 그룹입니다', '#테스트2', 'si');
 insert into groupinfo values(3, '주영이네', '주영이네 그룹입니다', '#테스트3', 'joo');
 
+insert into guserinfo values(1, 'so', 0);
 insert into guserinfo values(1, 'si', 1);
 insert into guserinfo values(1, 'joo', 1);
 insert into guserinfo values(1, 'test', 1);
 
+insert into guserinfo values(2, 'si', 0);
 insert into guserinfo values(2, 'so', 1);
 insert into guserinfo values(2, 'joo', 1);
+insert into guserinfo values(2, 'test', 2);
 
+insert into guserinfo values(3, 'joo', 0);
 insert into guserinfo values(3, 'so', 1);
+insert into guserinfo values(3, 'si', 2);
+insert into guserinfo values(3, 'test', 2);
 
 insert into likes values (11, 'so');
 insert into likes values (12, 'so');
