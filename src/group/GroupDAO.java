@@ -140,6 +140,24 @@ public class GroupDAO {
         return -1; //DB오류
     }
 
+    // 멤버 등록
+    public int registerMember(int gid, String uid, int isIn) {
+        String SQL = "insert into guserinfo(gid, uid, isIn) values(?, ?, ?)";
+
+        try {
+            PreparedStatement pstmt=conn.prepareStatement(SQL);
+            pstmt.setInt(1,gid);
+            pstmt.setString(2,uid);
+            pstmt.setInt(3,isIn);
+
+            return pstmt.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("GroupDAO makeGroup() error");
+            e.printStackTrace();
+        }
+        return -1; //DB오류
+    }
+
     public String getGroupTag(int gid){
         String SQL =  "select tag from groupinfo where gid = ?";
         try {
