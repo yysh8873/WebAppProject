@@ -40,6 +40,43 @@
 </head>
 
 <body>
+<%
+  String userID = null;
+  if(session.getAttribute("userID") != null) {
+    System.out.println("userID error");
+    userID = (String) session.getAttribute("userID");
+  }
+
+  if (userID == null) {
+    System.out.println("No login error");
+    PrintWriter script = response.getWriter();
+    script.println("<script>");
+    script.println("alert('로그인을 하세요')");
+    script.println("location.href='login.jsp'");
+    script.println("</script>");
+  }
+
+  int pageNumber = 1;
+  if(request.getParameter("pageNumber") != null){
+    pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
+  }
+
+  int gid = 0;
+
+  if(request.getParameter("gid") != null){
+    gid = Integer.parseInt(request.getParameter("gid"));
+  }
+  if(gid == 0) {
+    System.out.println("update error 2");
+    PrintWriter script = response.getWriter();
+    script.println("<script>");
+    script.println("alert('존재하지 않는 그룹입니다')");
+    script.println("history.back()");
+    script.println("</script>");
+  }
+  PostsDAO postsDAO = new PostsDAO();
+  GroupDAO groupDAO = new GroupDAO();
+%>
 <div id="wrapper">
   <%@ include file="/headerGroup.jsp" %>
 
@@ -48,49 +85,15 @@
   <div id="page-wrapper">
     <div class="header">
       <h1 class="page-header">
-        그룹 이름
+        <%= groupDAO.getGroupName(gid) %>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#">Home</a></li>
         <li><a href="#">그룹</a></li>
-        <li class="active">그룹 이름</li>
+        <li class="active"><%= groupDAO.getGroupName(gid) %></li>
       </ol>
     </div>
     <div id="page-inner">
-      <%
-        String uid = null;
-        if(session.getAttribute("uid") != null){
-            uid = (String) session.getAttribute("uid");
-        }
-
-        if (uid == null) {
-            System.out.println("No login error");
-            PrintWriter script = response.getWriter();
-            script.println("<script>");
-            script.println("alert('로그인을 하세요')");
-            script.println("location.href='login.jsp'");
-            script.println("</script>");
-        }
-
-        int pageNumber = 1;
-        if(request.getParameter("pageNumber") != null){
-            pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
-        }
-
-        int gid = 0;
-
-        if(request.getParameter("gid") != null){
-            gid = Integer.parseInt(request.getParameter("gid"));
-        }
-        if(gid == 0) {
-            System.out.println("update error 2");
-            PrintWriter script = response.getWriter();
-            script.println("<script>");
-            script.println("alert('존재하지 않는 그룹입니다')");
-            script.println("history.back()");
-            script.println("</script>");
-        }
-      %>
       <div class="row">
         <div class="col-md-12">
           <div class="card">
@@ -100,8 +103,6 @@
             <div class="card-image">
               <ul class="collection">
                 <%
-                  PostsDAO postsDAO = new PostsDAO();
-                  GroupDAO groupDAO = new GroupDAO();
                   ArrayList<Posts> list = postsDAO.getGroupList(pageNumber, gid);
                   for(int i = 0; i < list.size(); i++){
                 %>

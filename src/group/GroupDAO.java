@@ -235,4 +235,25 @@ public class GroupDAO {
         }
         return list;
     }
+    
+    //그룹 가입 대기
+    public ArrayList<Group> getGroupInList(int gid){
+        String SQL =  "select * from guserinfo where gid = ? and isIn = 2";
+        ArrayList<Group> list = new ArrayList<Group>();
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setInt(1, gid);
+            rs = pstmt.executeQuery();
+            while (rs.next()){
+                Group group = new Group();
+                group.setGid(rs.getInt(1));
+                group.setUid(rs.getString(2));
+                group.setIsIn(rs.getInt(3));
+                list.add(group);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return list;
+    }
 }

@@ -81,8 +81,8 @@
                             <p><%= list.get(i).getTag() %></p>
                         </div>
                         <div class="card-action">
-                            <a href="groupPost.jsp">입장 하기</a>
-                            <a href="groupGetout.jsp">탈퇴 하기</a>
+                            <a href="groupPost.jsp?gid=<%= list.get(i).getGid() %>">입장 하기</a>
+                            <a href="groupGetout.jsp?gid=<%= list.get(i).getGid() %>">탈퇴 하기</a>
                         </div>
                     </div>
                 </div>
