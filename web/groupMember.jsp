@@ -15,7 +15,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Deeper - 그룹</title>
+  <title>Deeper - 그룹 명단</title>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <link rel="stylesheet" href="resources/assets/materialize/css/materialize.min.css" media="screen,projection" />
@@ -89,7 +89,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="#">Home</a></li>
-        <li><a href="#">그룹</a></li>
+        <li><a href="#">그룹 명단</a></li>
         <li class="active"><%= groupDAO.getGroupName(gid) %></li>
       </ol>
     </div>
@@ -98,50 +98,33 @@
         <div class="col-md-12">
           <div class="card">
             <div class="card-action">
-              <b>포스트 목록</b>
+              <b>가입 신청 명단</b>
             </div>
-            <div class="card-image">
-              <ul class="collection">
-                <%
-                  ArrayList<Posts> list = postsDAO.getGroupList(pageNumber, gid);
-                  for(int i = 0; i < list.size(); i++){
-                %>
-                <a href="post.jsp?cid=<%= list.get(i).getCid() %>" type="inline" style="text-decoration:none">
-                  <li class="collection-item avatar">
-                    <i class="circle yellow white-text"><%= list.get(i).getCid() %></i>
-                    <span class="title"><%= list.get(i).getTitle() %></span>
-                    <p><%= list.get(i).getUid() %><br>
-                    <p style="color: gray"><%= list.get(i).getTdate() %></p>
-                    <br>
-                    <p aria-colspan="2", style="max-height: 11px; text-align: left"> <%= list.get(i).getTag() %> </p>
+            <%
 
-                    <%
-                      if(userID == null){
-                    %>
-                    <%
-                    } else if (userID != null && (postsDAO.getYouLike(list.get(i).getCid(), userID)).equals(userID)) {
-                      System.out.println("like ok");
-                    %>
-                    <a href="#" class="secondary-content"><i class="material-icons">thumb_up</i></a>
-                  </li></a>
-                <%
-                    } else
-                      System.out.println("like error, return = " + postsDAO.getYouLike(list.get(i).getCid(), userID));
-                  }
-                %>
-              </ul>
-              <%
-                if(pageNumber != 1) {
-              %>
-              <a href="groupPost.jsp?pageNumber=<%=pageNumber - 1%>" class="btn btn btn-light btn pull-right">이전으로</a>
-              <%
-                } if (postsDAO.nextPage(pageNumber + 1)) {
-              %>
-              <a href="groupPost.jsp?pageNumber=<%=pageNumber + 1%>" class="btn btn btn-light btn pull-right">다음으로</a>
-              <%
-                }
-              %>
+
+            %>
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-content">
+                  <%
+                    ArrayList<Group> guserlist = groupDAO.getGPeopleList(gid);
+                    for(int i = 0; i < guserlist.size(); i++){
+                  %>
+                  <div class="alert alert-danger">
+                    <strong><%= guserlist.get(i).getUid()%></strong> 그룹원 <a href="#" class="pull-right"><strong>허가</strong></a>
+                  </div>
+                  <%
+                    }
+                  %>
+                </div>
+                <div class="card-action">
+                  <a href="groupGetout.jsp?gid=<%= gid%>&userID=<%=userID%>">탈퇴하기</a>
+                  <a href="groupDelete.jsp?gid=<%= gid%>&userID=<%=userID%>">그룹 삭제하기</a>
+                </div>
+              </div>
             </div>
+
           </div>
 
 
@@ -149,7 +132,9 @@
         </div>
       </div>
       <div class="row">
-
+        <div class="card-action">
+          <b>그룹 명단</b>
+        </div>
         <div class="col-md-12">
           <div class="card">
             <div class="card-content">
