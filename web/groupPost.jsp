@@ -150,14 +150,15 @@
                     for(int i = 0; i < guserlist.size(); i++){
                 %>
               <div class="alert alert-info">
-                <strong><%= list.get(i).getUid()%></strong> 그룹원
+                <strong><%= guserlist.get(i).getUid()%></strong> 그룹원
               </div>
                 <%
                     }
                 %>
             </div>
             <div class="card-action">
-              <b>가입 하기</b>
+              <a href="groupGetout.jsp?gid=<%= gid%>&userID=<%=userID%>">탈퇴하기</a>
+              <a href="groupDelete.jsp?gid=<%= gid%>&userID=<%=userID%>">그룹 삭제하기</a>
             </div>
           </div>
         </div>
