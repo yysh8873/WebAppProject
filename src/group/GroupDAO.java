@@ -216,6 +216,34 @@ public class GroupDAO {
         return -1;
     }
 
+    // 그룹 삭제
+    public int deleteGroup(int gid, String uid){
+        // 그룹장만 그룹을 삭제할 수 있음
+        String SQL = "DELETE FROM groupinfo WHERE gid= ? AND uid = ?";
+        try {
+            PreparedStatement pstmt=conn.prepareStatement(SQL);
+            pstmt.setInt(1, gid);
+            pstmt.setString(2, uid);
+            return pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1; // 데이터베이스 오류
+    }
+
+    // 그룹 유저 목록 삭제
+    public int deleteGuser(int gid){
+        String SQL = "DELETE FROM guserinfo WHERE gid= ?";
+        try {
+            PreparedStatement pstmt=conn.prepareStatement(SQL);
+            pstmt.setInt(1, gid);
+            return pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1; // 데이터베이스 오류
+    }
+
     public ArrayList<Group> getGPeopleList(int gid){
         String SQL =  "select * from guserinfo where gid = ? and isIn = 1";
         ArrayList<Group> list = new ArrayList<Group>();
