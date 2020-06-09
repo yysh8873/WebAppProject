@@ -89,6 +89,22 @@ public class UserDAO {
         return -1; // DB Error
     }
 
+    // 비밀번호 수정. 업데이트.
+    public int updateUserPW(String uid, String pw, String email) {
+        String SQL = "update userinfo set pw=? where uid=? and email=?";
+        try {
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, md5(pw));
+            pstmt.setString(2, uid);
+            pstmt.setString(3, email);
+            return pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("DB 오류");
+        }
+        return -1; // DB Error
+    }
+
     //회원가입
     public int register(String uid, String name, String email, String pw) {
         String SQL = "INSERT INTO userinfo value (?, ?, ?, ?)";
