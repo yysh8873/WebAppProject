@@ -21,6 +21,7 @@
             <input type="password" placeholder="password" name="pw"/>
             <button type="submit"> 로그인 </button>
             <p class="message">계정이 없으신가요? <a href="register.jsp">회원가입</a></p>
+            <p class="message">비밀번호를 까먹으셨나요? <a href="email.jsp">비밀번호 찾기</a></p>
         </form>
     </div>
 </div>

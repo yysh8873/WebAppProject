@@ -37,7 +37,7 @@
                     <input type="text" class="form-control no-padding" placeholder="Search by Title" aria-label="Search" name="title"></a>
 
             </li>
-            <li><button type="submit" class="button waves-effect waves-dark btn-rounded btn-sm my-0 ml-sm-2">검색</button></li>
+            <li><a class="button waves-effect waves-dark btn-rounded btn-sm my-0 ml-sm-2"> <button type="submit" class="waves-effect waves-dark">검색</button></a></li>
             <li><a href="write.jsp" class="button waves-effect waves-dark btn-rounded secondary-content"><i class="material-icons">mode_edit</i></a></li>
             <li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1"><i class="fa fa-user fa-fw"></i> <b>로그인</b> <i class="material-icons right">arrow_drop_down</i></a></li>
         </ul>

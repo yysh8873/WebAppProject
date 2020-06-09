@@ -48,6 +48,11 @@
     </div>
     <div id="page-inner">
       <%
+        String userID = null;
+        if(session.getAttribute("userID")!=null) {
+          userID = (String) session.getAttribute("userID");
+        }
+
         System.out.println("pageNumber ok");
         int pageNumber = 1;
         if(request.getParameter("pageNumber") != null){
@@ -62,15 +67,6 @@
             </div>
             <div class="card-image">
               <ul class="collection">
-                <a href="posts.jsp" type="inline" style="text-decoration:none">
-                  <li class="collection-item avatar">
-                    <i class="material-icons circle yellow">track_changes</i>
-                    <!--<span class="title">글 제목</span>
-                    <p>글쓴이<br>
-                      게시글 미리보기
-                    </p>
-                    <a href="#!" class="secondary-content"><i class="material-icons">thumb_up</i></a>
-                    -->
                       <%
                            PostsDAO postsDAO = new PostsDAO();
                            ArrayList<Posts> list = postsDAO.getPostByTitle(pageNumber, search.getTitle());
@@ -87,9 +83,18 @@
                     <p style="color: gray"><%= list.get(i).getTdate() %></p>
                     <br>
                     <p aria-colspan="2", style="max-height: 11px; text-align: left"> <%= list.get(i).getTag() %> </p>
-                    <a href="#!" class="secondary-content"><i class="material-icons">thumb_up</i></a>
+                    <%
+                      if(userID == null){
+                    %>
+                    <%
+                    } else if (userID != null && (postsDAO.getYouLike(list.get(i).getCid(), userID)).equals(userID)) {
+                      System.out.println("like ok");
+                    %>
+                    <a href="#" class="secondary-content"><i class="material-icons">thumb_up</i></a>
                   </li></a>
                 <%
+                    } else
+                      System.out.println("like error, return = " + postsDAO.getYouLike(list.get(i).getCid(), userID));
                   }
                 %>
               </ul>
@@ -117,17 +122,6 @@
         </div>
       </div>
       <!-- /. ROW  -->
-      <div class="fixed-action-btn horizontal click-to-toggle">
-        <a class="btn-floating btn-large red">
-          <i class="material-icons">menu</i>
-        </a>
-        <ul>
-          <li><a class="btn-floating red"><i class="material-icons">track_changes</i></a></li>
-          <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-          <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-          <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
-        </ul>
-      </div>
     </div>
     <!-- /. PAGE INNER  -->
   </div>
