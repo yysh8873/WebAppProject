@@ -70,7 +70,7 @@
         msg.setSubject(MimeUtility.encodeText("Deeper 새 비밀번호", "utf-8","B"));
 
         Random rand = new Random();
-        String ran = Integer.toString(rand.nextInt(1000)) + "deep"; //0~999 까지 난수 생성
+        String ran = Integer.toString(rand.nextInt(1000)) + "deeper"; //0~999 까지 난수 생성
         String content = "새로 설정된 비밀번호는 " + ran + "입니다.";
 
         System.out.println("설정된 비밀번호 = " +  ran);
@@ -88,9 +88,10 @@
         else { // db 오류
             PrintWriter script = response.getWriter();
             script.println("<script>");
-            script.println("alert('데이터베이스 오류가 발생했습니다')");
+            script.println("alert('입력하신 정보가 올바르지 않습니다')");
             script.println("history.back()"); // 이전페이지로 가기(다시 로그인 페이지로 가기)
             script.println("</script>");
+            return;
         }
 
 
