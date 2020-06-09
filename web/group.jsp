@@ -75,7 +75,7 @@
                         </div>
                         <div class="card-action">
                             <a href="groupinfo.jsp?gid=<%= list.get(i).getGid() %>">정보 보기</a>
-                            <a href="groupApply.jsp?gid=<%= list.get(i).getGid()%>">가입 신청</a>
+                            <a href="groupJoin.jsp?gid=<%= list.get(i).getGid()%>" onclick="return confirm('가입하시겠습니까?');">가입 신청</a>
                         </div>
                     </div>
                 </div>

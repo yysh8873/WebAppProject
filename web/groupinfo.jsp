@@ -78,7 +78,7 @@
                             <br>
                             <p><strong>그룹원 수 : </strong> <%=group.getGroupCount(gid)%> </p>
                             <div class="input-field col s12 right-align bottom-right">
-                                <a class="waves-effect waves-light btn yellow" href="groupJoin.jsp"><i class="material-icons left">repeat</i>가입하기</a>
+                                <a class="waves-effect waves-light btn yellow" href="groupJoin.jsp" onclick="return confirm('가입하시겠습니까?');"><i class="material-icons left">repeat</i>가입하기</a>
                             </div>
                             <div class="clearBoth"><br/></div>
 
