@@ -82,7 +82,7 @@
                         </div>
                         <div class="card-action">
                             <a href="groupPost.jsp?gid=<%= list.get(i).getGid() %>">입장 하기</a>
-                            <a href="groupGetout.jsp?gid=<%= list.get(i).getGid() %>">탈퇴 하기</a>
+                            <a href="groupGetout.jsp?gid=<%= list.get(i).getGid() %>" onclick="return confirm('정말 탈퇴하시겠습니까?');">탈퇴 하기</a>
                         </div>
                     </div>
                 </div>

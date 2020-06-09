@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 //import org.mariadb.jdbc.Driver;
-import group.Group;
+
 
 public class GroupDAO {
     String driver = "org.mariadb.jdbc.Driver";
@@ -69,7 +69,7 @@ public class GroupDAO {
     //가입한 그룹 목록 불러오기
     public ArrayList<Group> getMyGroupList(String uid){
         String SQL =  "select * from groupinfo join guserinfo on groupinfo.gid = guserinfo.gid " +
-                "where guserinfo.uid = ?";
+                "where guserinfo.uid = ? and guserinfo.isIn = 1";
         ArrayList<Group> list = new ArrayList<Group>();
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -263,7 +263,52 @@ public class GroupDAO {
         }
         return list;
     }
-    
+
+    //그룹 가입 신청
+    public int groupJoin(String uid, int gid) {
+        String SQL = "insert into guserinfo(gid, uid, isIn) values(?, ?, 2)";
+        try {
+            PreparedStatement pstmt=conn.prepareStatement(SQL);
+            pstmt.setInt(1, gid);
+            pstmt.setString(2, uid);
+            return pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1; //디비오류
+    }
+
+    //그룹원 검사
+    //1이면 그룹원 있음 -1이면 디비오류
+    public int isGroupMember(String uid, int gid) {
+        String SQL =  "select count(*) from guserinfo where gid = ? and uid = ?";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setInt(1, gid);
+            pstmt.setString(2, uid);
+            rs = pstmt.executeQuery();
+            rs.next();
+            return rs.getInt(1);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return -1; //디비오류
+    }
+
+    //그룹 탈퇴
+    public int groupOut(String uid, int gid) {
+        String SQL = "delete from guserinfo where gid = ? and uid = ?";
+        try {
+            PreparedStatement pstmt=conn.prepareStatement(SQL);
+            pstmt.setInt(1, gid);
+            pstmt.setString(2, uid);
+            return pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1; //디비오류
+    }
+
     //그룹 가입 대기
     public ArrayList<Group> getGroupInList(int gid){
         String SQL =  "select * from guserinfo where gid = ? and isIn = 2";
