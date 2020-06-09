@@ -57,14 +57,14 @@
         if(result == -1) {
             PrintWriter script = response.getWriter();
             script.println("<script>");
-            script.println("alert('탈퇴에 실패했습니다.')");
+            script.println("alert('해당 그룹에 가입 신청을 실패했습니다.')");
             script.println("location.href='myGroup.jsp'");
             script.println("</script>");
         }
         else {
             PrintWriter script = response.getWriter();
             script.println("<script>");
-            script.println("alert('그룹에 가입신청했습니다.')");
+            script.println("alert('그룹에 가입 신청했습니다.')");
             script.println("location.href='myGroup.jsp'");
             script.println("</script>");
         }
