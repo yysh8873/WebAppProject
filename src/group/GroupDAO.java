@@ -69,7 +69,7 @@ public class GroupDAO {
     //가입한 그룹 목록 불러오기
     public ArrayList<Group> getMyGroupList(String uid){
         String SQL =  "select * from groupinfo join guserinfo on groupinfo.gid = guserinfo.gid " +
-                "where guserinfo.uid = ? and guserinfo.isIn = 1";
+                "where guserinfo.uid = ? and guserinfo.isIn < 2";
         ArrayList<Group> list = new ArrayList<Group>();
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
