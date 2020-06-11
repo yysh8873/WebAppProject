@@ -7,6 +7,8 @@
 --%>
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter" %>
+<% request.setCharacterEncoding("UTF-8"); %>
+
 
 <html>
 <head>
@@ -14,6 +16,14 @@
     <title>Title</title>
 </head>
 <body>
+<%
+    String uid = null;
+    if(session.getAttribute("userID")!=null) {
+        uid = (String) session.getAttribute("userID");
+    }
+    System.out.println("header.jsp > "+uid);
+%>
+
 <nav class="navbar navbar-default top-navbar" role="navigation">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle waves-effect waves-dark" data-toggle="collapse" data-target=".sidebar-collapse">
@@ -37,7 +47,17 @@
             </li>
             <li><a class="button waves-effect waves-dark btn-rounded btn-sm my-0 ml-sm-2"> <button type="submit" class="waves-effect waves-dark">검색</button></a></li>
             <li><a href="write.jsp" class="button waves-effect waves-dark btn-rounded secondary-content"><i class="material-icons">mode_edit</i></a></li>
-            <li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1"><i class="fa fa-user fa-fw"></i> <b>로그인</b> <i class="material-icons right">arrow_drop_down</i></a></li>
+            <li>
+                <a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1">
+                    <i class="fa fa-user fa-fw"></i>
+                    <% if(uid==null) {%>
+                        <b>로그인</b>
+                    <% } else { %>
+                        <b><%=uid%></b>
+                    <% } %>
+                    <i class="material-icons right">arrow_drop_down</i>
+                </a>
+            </li>
         </ul>
     </form>
 </nav>
@@ -48,7 +68,15 @@
     </li>
     <li><a href="changeUserInfo.jsp"><i class="fa fa-gear fa-fw"></i> 회원정보 수정</a>
     </li>
-    <li><a href="login.jsp"><i class="fa fa-sign-out fa-fw"></i> 로그아웃</a>
+    <li>
+        <a href="login.jsp">
+            <i class="fa fa-sign-out fa-fw"></i>
+            <% if (uid!=null) { %>
+            로그아웃
+            <% } else { %>
+            로그인
+            <% } %>
+        </a>
     </li>
 </ul>
 
