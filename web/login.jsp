@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="resources/assets/css/login.css">
 </head>
 <body>
+<%session.invalidate();%>
 <div class="login-page">
     <div class="form">
         <form class="login-form" method="post" action="loginAction.jsp">
