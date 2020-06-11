@@ -16,7 +16,7 @@
     <div class="form">
         <form class="login-form" action="searchPw.jsp" method="get">
             <p>
-                아래 이메일주소를 입력하시면,<br>입력하신 이메일로<br>새암호를 보내드립니다<br>
+                회원가입 시, 사용했던<br>이메일주소를 입력하시면,<br>해당 이메일로<br>새 비밀번호를 보내드립니다<br>
                 <br>
             <input type="text" name="username" placeholder="ID" />
             <input type="text" name="email" placeholder="email"/>
