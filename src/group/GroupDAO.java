@@ -188,6 +188,22 @@ public class GroupDAO {
         return "-1";
     }
 
+    public String getGroupMasterID(int gid){
+        String SQL =  "select userinfo.uid " +
+                "from groupinfo join userinfo on groupinfo.uid = userinfo.uid " +
+                "where groupinfo.gid = ?";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setInt(1, gid);
+            rs = pstmt.executeQuery();
+            rs.next();
+            return rs.getString(1);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return "-1";
+    }
+
     public int getGroupCount(int gid){
         String SQL =  "select count(*)+1 from guserinfo where gid = ? and isIn = 1";
         try {
@@ -245,7 +261,9 @@ public class GroupDAO {
     }
 
     public ArrayList<Group> getGPeopleList(int gid){
-        String SQL =  "select * from guserinfo where gid = ? and isIn = 1";
+        String SQL =  "SELECT guserinfo.gid, guserinfo.uid, guserinfo.isIn, userinfo.name" +
+                "FROM guserinfo RIGHT OUTER JOIN userinfo ON guserinfo.uid = userinfo.uid" +
+                "where guserinfo.gid = ? and guserinfo.isIn = 1;";
         ArrayList<Group> list = new ArrayList<Group>();
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -256,6 +274,7 @@ public class GroupDAO {
                 group.setGid(rs.getInt(1));
                 group.setUid(rs.getString(2));
                 group.setIsIn(rs.getInt(3));
+                group.setName(rs.getString(4));
                 list.add(group);
             }
         } catch (Exception e){
@@ -311,7 +330,9 @@ public class GroupDAO {
 
     //그룹 가입 대기
     public ArrayList<Group> getGroupInList(int gid){
-        String SQL =  "select * from guserinfo where gid = ? and isIn = 2";
+        String SQL =  "SELECT guserinfo.gid, guserinfo.uid, guserinfo.isIn, userinfo.name" +
+                "FROM guserinfo RIGHT OUTER JOIN userinfo ON guserinfo.uid = userinfo.uid" +
+                "where guserinfo.gid = ? and guserinfo.isIn = 2;";
         ArrayList<Group> list = new ArrayList<Group>();
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -322,11 +343,26 @@ public class GroupDAO {
                 group.setGid(rs.getInt(1));
                 group.setUid(rs.getString(2));
                 group.setIsIn(rs.getInt(3));
+                group.setName(rs.getString(4));
                 list.add(group);
             }
         } catch (Exception e){
             e.printStackTrace();
         }
         return list;
+    }
+
+    //그룹원 승인
+    public int groupMemIn(String uid, int gid) {
+        String SQL = "update guserinfo set isIn = 1 where gid = ? and uid = ?";
+        try {
+            PreparedStatement pstmt=conn.prepareStatement(SQL);
+            pstmt.setInt(1, gid);
+            pstmt.setString(2, uid);
+            return pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1; //디비오류
     }
 }

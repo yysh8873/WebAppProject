@@ -19,6 +19,7 @@ public class Group {
     private String tag;
     private String uid;
     private int isIn;
+    private String name;
 
     public int getGid() { return gid; }
 
@@ -45,4 +46,8 @@ public class Group {
     public int getIsIn() { return isIn; }
 
     public void setIsIn(int isIn) {this.isIn = isIn; }
+
+    public String getName() {return name; }
+
+    public void setName(String name) { this.gname = name; }
 }

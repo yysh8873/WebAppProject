@@ -154,14 +154,14 @@
           <div class="card">
             <div class="card-content">
               <div class="alert alert-success">
-                <strong><%=groupDAO.getGroupMaster(gid)%></strong> 그룹장
+                <strong><%=groupDAO.getGroupMaster(gid)%>(<%=groupDAO.getGroupMasterID(gid)%>)</strong> 그룹장
               </div>
                 <%
                     ArrayList<Group> guserlist = groupDAO.getGPeopleList(gid);
                     for(int i = 0; i < guserlist.size(); i++){
                 %>
               <div class="alert alert-info">
-                <strong><%= guserlist.get(i).getUid()%></strong> 그룹원 <a href="#" class="pull-right"><strong>강퇴</strong></a>
+                <strong><%= guserlist.get(i).getName()%>(<%= guserlist.get(i).getUid()%>)</strong> 그룹원
               </div>
                 <%
                     }

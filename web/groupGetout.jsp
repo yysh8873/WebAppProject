@@ -1,5 +1,16 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ page import="java.io.PrintWriter" %>
-<%@ page import="group.GroupDAO" %><%--
+<%@ page import="group.GroupDAO" %>
+<% request.setCharacterEncoding("UTF-8"); %>
+<jsp:useBean id="group" class="group.Group" scope="page"/>
+<jsp:setProperty name="group" property="uid" />
+<jsp:setProperty name="group" property="gid" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body><%--
   Created by IntelliJ IDEA.
   User: 우주영
   Date: 2020-06-08
@@ -7,7 +18,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<% request.setCharacterEncoding("UTF-8"); %>
 <html>
 <head>
 </head>
@@ -47,7 +58,7 @@
 
     GroupDAO groupDAO = new GroupDAO();
     //그룹장 검사: 그룹장은 탈퇴할 수 없습니다.
-    if(userID == groupDAO.getGroupMaster(gid)) {
+    if(userID == groupDAO.getGroupMasterID(gid)) {
         PrintWriter script = response.getWriter();
         script.println("<script>");
         script.println("alert('그룹장은 탈퇴할 수 없습니다.')");

@@ -5,24 +5,34 @@
 <jsp:useBean id="group" class="group.Group" scope="page"/>
 <jsp:setProperty name="group" property="uid" />
 <jsp:setProperty name="group" property="gid" />
-<!DOCTYPE html>
+<!DOCTYPE html><%--
+  Created by IntelliJ IDEA.
+  User: 우주영
+  Date: 2020-06-13
+  Time: 오후 6:54
+  To change this template use File | Settings | File Templates.
+--%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
 </head>
-<body><%--
-  Created by IntelliJ IDEA.
-  User: 우주영
-  Date: 2020-06-08
-  Time: 오후 10:43
-  To change this template use File | Settings | File Templates.
---%>
-
+<body>
 <%
-    // 1. 로그인 검사
+    // 1. 로그인검사
     String userID = null;
     if(session.getAttribute("userID") != null) {
         userID = (String) session.getAttribute("userID");
+    }
+
+    if (userID == null) {
+        System.out.println("No login error");
+        PrintWriter script = response.getWriter();
+        script.println("<script>");
+        script.println("alert('로그인을 하세요')");
+        script.println("location.href='login.jsp'");
+        script.println("</script>");
+    }
+    else {
     }
 
     //그룹 존재 여부
@@ -40,45 +50,37 @@
         script.println("</script>");
     }
 
-    if (userID == null) {
-        System.out.println("No login error");
-        PrintWriter script = response.getWriter();
-        script.println("<script>");
-        script.println("alert('로그인을 하세요')");
-        script.println("location.href='login.jsp'");
-        script.println("</script>");
-    }
-    else {
+    String uid = "";
+    if(request.getParameter("uid") != null) {
+        uid = request.getParameter("uid");
     }
 
     GroupDAO groupDAO = new GroupDAO();
-    // 2. 이미 가입: 이미 가입한 그룹입니다
-    int ismem = groupDAO.isGroupMember(userID, gid);
-    if(ismem == 1) {
-        PrintWriter script = response.getWriter();
-        script.println("<script>");
-        script.println("alert('이미 가입한 그룹입니다.')");
-        script.println("location.href='myGroup.jsp'");
-        script.println("</script>");
-    }
-
-    //그 외: 신청되었습니다
-    else {
-        int result = groupDAO.groupJoin(userID, gid);
+    // 2. 그룹장 확인
+    if(userID.equals(groupDAO.getGroupMasterID(gid))) {
+        // 3. 그룹멤버 삭제
+        int result = groupDAO.groupOut(uid, gid);
         if(result == -1) {
             PrintWriter script = response.getWriter();
             script.println("<script>");
-            script.println("alert('해당 그룹에 가입 신청을 실패했습니다.')");
-            script.println("location.href='myGroup.jsp'");
+            script.println("alert('그룹 유저 삭제을 실패했습니다.')");
+            script.println("location.href='groupMember.jsp?gid="+gid+"'");
             script.println("</script>");
         }
         else {
             PrintWriter script = response.getWriter();
             script.println("<script>");
-            script.println("alert('그룹에 가입 신청했습니다.')");
-            script.println("location.href='myGroup.jsp'");
+            script.println("alert('해당 유저를 그룹에서 삭제했습니다.')");
+            script.println("location.href='groupMember.jsp?gid="+gid+"'");
             script.println("</script>");
         }
+    }
+    else {
+        PrintWriter script = response.getWriter();
+        script.println("<script>");
+        script.println("alert('그룹장이 아닙니다.')");
+        script.println("location.href='myGroup.jsp'");
+        script.println("</script>");
     }
 %>
 </body>
