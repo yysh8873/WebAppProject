@@ -19,7 +19,7 @@
     public class MyAuthentication extends Authenticator { //아이디 패스워드 인증받기 함수
         PasswordAuthentication pa;
         public MyAuthentication(){
-            pa=new PasswordAuthentication("yoso1516@gmail.com","yoso1516");
+            pa = new PasswordAuthentication("yoso1516@gmail.com", "yoso1516");
         }
         @Override
         protected PasswordAuthentication getPasswordAuthentication() {

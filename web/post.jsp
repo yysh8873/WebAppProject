@@ -95,7 +95,7 @@
                                 <%= posts.getContents().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></p>
                             <br>
                             <hr>
-                            <p><strong>등록된 해시태그 #<a href="#"> <%= posts.getTag() %> </a> </strong></p>
+                            <p><strong>등록된 해시태그 <a href="#"> <%= posts.getTag() %> </a> </strong></p>
                             <br>
 
                             <form method=get action="http://www.google.co.kr/search">
