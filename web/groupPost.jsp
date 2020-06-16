@@ -161,7 +161,7 @@
                     for(int i = 0; i < guserlist.size(); i++){
                 %>
               <div class="alert alert-info">
-                <strong><%= guserlist.get(i).getName()%>(<%= guserlist.get(i).getUid()%>)</strong> 그룹원
+                <strong><%= guserlist.get(i).getUid()%></strong> 그룹원
               </div>
                 <%
                     }

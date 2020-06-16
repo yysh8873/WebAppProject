@@ -112,7 +112,7 @@
                     for(int i = 0; i < waitlist.size(); i++){
                   %>
                   <div class="alert alert-danger">
-                    <strong><%= waitlist.get(i).getUid()%></strong> <a href="guserSign.jsp?gid=<%= waitlist.get(i).getGid()%>&uid=<%= waitlist.get(i).getUid()%>" class="pull-right"><strong>허가</strong></a><a href="guserDel.jsp?gid=<%= waitlist.get(i).getGid()%>&uid=<%= waitlist.get(i).getUid()%>" class="pull-right"><strong>거부</strong></a>
+                    <strong><%= waitlist.get(i).getUid()%></strong> <a href="guserSign.jsp?gid=<%= waitlist.get(i).getGid()%>&uid=<%= waitlist.get(i).getUid()%>" class="pull-right"><strong>허가</strong></a><a href="guserDel.jsp?gid=<%= waitlist.get(i).getGid()%>&uid=<%= waitlist.get(i).getUid()%>" class="pull-right"><strong>거부         </strong></a>
                   </div>
                   <%
                     }
