@@ -112,7 +112,7 @@
                     for(int i = 0; i < waitlist.size(); i++){
                   %>
                   <div class="alert alert-danger">
-                    <strong><%= waitlist.get(i).getName()%>(<%= waitlist.get(i).getUid()%>)</strong> <a href="guserSign.jsp?gid=<%= waitlist.get(i).getGid()%>&uid=<%= waitlist.get(i).getUid()%>" class="pull-right"><strong>허가</strong></a><a href="guserDel.jsp?gid=<%= waitlist.get(i).getGid()%>&uid=<%= waitlist.get(i).getUid()%>" class="pull-right"><strong>거부</strong></a>
+                    <strong><%= waitlist.get(i).getUid()%></strong> <a href="guserSign.jsp?gid=<%= waitlist.get(i).getGid()%>&uid=<%= waitlist.get(i).getUid()%>" class="pull-right"><strong>허가</strong></a><a href="guserDel.jsp?gid=<%= waitlist.get(i).getGid()%>&uid=<%= waitlist.get(i).getUid()%>" class="pull-right"><strong>거부</strong></a>
                   </div>
                   <%
                     }
@@ -146,7 +146,7 @@
                     for(int i = 0; i < guserlist.size(); i++){
                 %>
               <div class="alert alert-info">
-                <strong><%= guserlist.get(i).getName()%>(<%= guserlist.get(i).getUid()%>)</strong> 그룹원 <a href="guserDel.jsp?gid=<%= guserlist.get(i).getGid()%>&uid=<%= guserlist.get(i).getUid()%>" class="pull-right"><strong>강퇴</strong></a>
+                <strong><%= guserlist.get(i).getUid()%></strong> 그룹원 <a href="guserDel.jsp?gid=<%= guserlist.get(i).getGid()%>&uid=<%= guserlist.get(i).getUid()%>" class="pull-right"><strong>강퇴</strong></a>
               </div>
                 <%
                     }
