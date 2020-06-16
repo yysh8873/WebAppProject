@@ -95,17 +95,11 @@
     </div>
     <div id="page-inner">
       <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-action">
-              <b>가입 신청 명단</b>
-            </div>
-            <%
-
-
-            %>
             <div class="col-md-12">
               <div class="card">
+                <div class="card-action">
+                  <b>가입 신청 명단</b>
+                </div>
                 <div class="card-content">
                   <%
                     ArrayList<Group> waitlist = groupDAO.getGroupInList(gid);
@@ -118,25 +112,16 @@
                     }
                   %>
                 </div>
-                <div class="card-action">
-<%--                  <a href="groupGetout.jsp?gid=<%= gid%>&userID=<%=userID%>">탈퇴하기</a>--%>
-<%--                  <a href="groupDelete.jsp?gid=<%= gid%>&userID=<%=userID%>">그룹 삭제하기</a>--%>
-                </div>
               </div>
-            </div>
-
-          </div>
-
-
-
+              
         </div>
       </div>
       <div class="row">
-        <div class="card-action">
-          <b>그룹원 명단</b>
-        </div>
         <div class="col-md-12">
           <div class="card">
+            <div class="card-action">
+              <b>그룹원 명단</b>
+            </div>
             <div class="card-content">
               <div class="alert alert-success">
                 <strong><%=groupDAO.getGroupMaster(gid)%></strong> 그룹장
