@@ -95,48 +95,33 @@
     </div>
     <div id="page-inner">
       <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-action">
-              <b>가입 신청 명단</b>
-            </div>
-            <%
-
-
-            %>
             <div class="col-md-12">
               <div class="card">
+                <div class="card-action">
+                  <b>가입 신청 명단</b>
+                </div>
                 <div class="card-content">
                   <%
                     ArrayList<Group> waitlist = groupDAO.getGroupInList(gid);
                     for(int i = 0; i < waitlist.size(); i++){
                   %>
                   <div class="alert alert-danger">
-                    <strong><%= waitlist.get(i).getName()%>(<%= waitlist.get(i).getUid()%>)</strong> <a href="guserSign.jsp?gid=<%= waitlist.get(i).getGid()%>&uid=<%= waitlist.get(i).getUid()%>" class="pull-right"><strong>허가</strong></a><a href="guserDel.jsp?gid=<%= waitlist.get(i).getGid()%>&uid=<%= waitlist.get(i).getUid()%>" class="pull-right"><strong>거부</strong></a>
+                    <strong><%= waitlist.get(i).getUid()%></strong> <a href="guserSign.jsp?gid=<%= waitlist.get(i).getGid()%>&uid=<%= waitlist.get(i).getUid()%>" class="pull-right"><strong>허가</strong></a><a href="#" class="pull-right">       </a><a href="guserDel.jsp?gid=<%= waitlist.get(i).getGid()%>&uid=<%= waitlist.get(i).getUid()%>" class="pull-right"><strong>거부</strong></a>
                   </div>
                   <%
                     }
                   %>
                 </div>
-                <div class="card-action">
-<%--                  <a href="groupGetout.jsp?gid=<%= gid%>&userID=<%=userID%>">탈퇴하기</a>--%>
-<%--                  <a href="groupDelete.jsp?gid=<%= gid%>&userID=<%=userID%>">그룹 삭제하기</a>--%>
-                </div>
               </div>
-            </div>
-
-          </div>
-
-
-
+              
         </div>
       </div>
       <div class="row">
-        <div class="card-action">
-          <b>그룹 명단</b>
-        </div>
         <div class="col-md-12">
           <div class="card">
+            <div class="card-action">
+              <b>그룹원 명단</b>
+            </div>
             <div class="card-content">
               <div class="alert alert-success">
                 <strong><%=groupDAO.getGroupMaster(gid)%></strong> 그룹장
@@ -146,7 +131,7 @@
                     for(int i = 0; i < guserlist.size(); i++){
                 %>
               <div class="alert alert-info">
-                <strong><%= guserlist.get(i).getName()%>(<%= guserlist.get(i).getUid()%>)</strong> 그룹원 <a href="guserDel.jsp?gid=<%= guserlist.get(i).getGid()%>&uid=<%= guserlist.get(i).getUid()%>" class="pull-right"><strong>강퇴</strong></a>
+                <strong><%= guserlist.get(i).getUid()%></strong> 그룹원 <a href="guserDel.jsp?gid=<%= guserlist.get(i).getGid()%>&uid=<%= guserlist.get(i).getUid()%>" class="pull-right"><strong>강퇴</strong></a>
               </div>
                 <%
                     }

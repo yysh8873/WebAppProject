@@ -64,10 +64,12 @@
 <!-- Dropdown Structure -->
 
 <ul id="dropdown1" class="dropdown-content">
+    <% if (uid!=null) { %>
     <li><a href="myInfo.jsp"><i class="fa fa-user fa-fw"></i> 회원정보 보기</a>
     </li>
     <li><a href="changeUserInfo.jsp"><i class="fa fa-gear fa-fw"></i> 회원정보 수정</a>
     </li>
+    <% } %>
     <li>
         <a href="login.jsp">
             <i class="fa fa-sign-out fa-fw"></i>

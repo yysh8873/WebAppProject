@@ -161,7 +161,7 @@
                     for(int i = 0; i < guserlist.size(); i++){
                 %>
               <div class="alert alert-info">
-                <strong><%= guserlist.get(i).getName()%>(<%= guserlist.get(i).getUid()%>)</strong> 그룹원
+                <strong><%= guserlist.get(i).getUid()%></strong> 그룹원
               </div>
                 <%
                     }
@@ -170,6 +170,13 @@
             <div class="card-action">
               <a href="groupGetout.jsp?gid=<%= gid%>&userID=<%=userID%>">탈퇴하기</a>
               <a href="groupDelete.jsp?gid=<%= gid%>&userID=<%=userID%>">그룹 삭제하기</a>
+              <%
+                if(userID.equals(groupDAO.getGroupMasterID(gid))) {
+              %>
+              <a href="groupMember.jsp?gid=<%= gid%>&userID=<%=userID%>">그룹원 관리</a>
+              <%
+                }
+              %>
             </div>
           </div>
         </div>

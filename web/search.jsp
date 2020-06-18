@@ -28,6 +28,13 @@
   <!-- Google Fonts-->
   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
   <link rel="stylesheet" href="resources/assets/js/Lightweight-Chart/cssCharts.css">
+
+  <style type="text/css">
+    a, a:hover{
+      color: #000000;
+      text-decoration: none;
+    }
+  </style>
 </head>
 
 <body>
