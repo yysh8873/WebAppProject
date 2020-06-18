@@ -48,7 +48,7 @@
         script.println("history.back()");
         script.println("</script>");
       } else {
-        result=groupDAO.registerMember(groupDAO.getGid(group.getGname()),userID,1);
+        result=groupDAO.registerMember(groupDAO.getGid(group.getGname()),userID,0);
         System.out.println("makeGroupAction.jsp - registerMember(): "+result);
         PrintWriter script = response.getWriter();
         script.println("<script>");
